@@ -1,0 +1,27 @@
+# <% if @tag.present? %>
+#     <h2>Showing Questions tagged by: 
+#         <span class="badge badge-pill badge-primary"><%= @tag.name %></span>
+#     </h2>
+# <% end %>
+<div class="row">
+    <div class="=col-2">
+    </div>
+
+    <div class="col-10">
+    <% @pets.each do |pet| %>
+        <div>
+            <h3><%= link_to pet.name, pet_path(pet) %></h3>
+            <p> <%= pet.description %> </p>
+            <p> <%= pet.animal %> </p>
+            <p> <%= pet.age %> </p>
+            <p> <%= pet.sex %> </p>
+            <p> <%= pet.breed %> </p>
+            <p> <%= pet.colour %> </p>
+            <p> <%= pet.location_lost %> </p>
+            <p> <%= pet.distinctive_features %> </p>
+            
+            <hr />
+        </div>
+    <% end %>
+    </div>
+</div>
