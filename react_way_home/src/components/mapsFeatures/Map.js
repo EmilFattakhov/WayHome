@@ -8,7 +8,6 @@ Geocode.enableDebug();
 
 class Map extends Component{
 
-
 	constructor( props ){
 		super( props );
 		this.state = {
@@ -251,8 +250,7 @@ class Map extends Component{
 			)
 		);
 		let map;
-		console.log('This is aftet the map', this.props.map)
-		if( this.props.map.center.lat !== undefined ) {
+		if( this.props.center.lat !== undefined ) {
 			map = <div>
 				<div>
 					<div className="form-group">

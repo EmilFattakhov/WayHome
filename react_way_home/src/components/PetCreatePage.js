@@ -30,17 +30,17 @@ class PetCreatePage extends Component {
       errors: { },
       map: {
         address: '',
-			  city: '',
-			  area: '',
+		city: '',
+		area: '',
         state: '',
       },
-			mapPosition: {
-				  lat: 49.282730,
-				  lng: -123.120735,
+		mapPosition: {
+			lat: 49.282730,
+			lng: -123.120735,
 			},
-			markerPosition: {
-				  lat: 49.282730,
-				  lng: -123.120735,
+		markerPosition: {
+			lat: 49.282730,
+			lng: -123.120735,
       }
       ,
       google: this.props.google,
