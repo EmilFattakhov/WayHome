@@ -25,9 +25,6 @@ class LocationForm extends Component {
 			}
     }
 
-    handleChange = (change) => {
-      this.setState
-    }
     // this.deleteComment = this.deleteComment.bind(this) 
     // this.createComment = this.createComment.bind(this)
     // this.createLocation = this.createLocation.bind(this)

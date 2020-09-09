@@ -5,9 +5,7 @@ class Api::V1::PetsController < Api::ApplicationController
     render(json: pets, each_serializer: PetCollectionSerializer)
   end
 
-  # curl http://localhost:3000/api/v1/questions 👈🏻 To see json reply in terminal
   def show
-    # curl http://localhost:3000/api/v1/questions/4 👈🏻 To see json reply in terminal for particular question id
     pet = Pet.find(params[:id])
     location = Location.new
     render(json: pet)

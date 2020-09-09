@@ -76,3 +76,16 @@ export const User = {
   }
 }
 
+export const Comment = {
+  create(id, params) {
+    return fetch(`${BASE_URL}/pets/${id}/comments`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(params)
+    }).then(res => res.json());
+  }
+};
+

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PetDetails from './PetDetails';
 import CommentsList from './CommentsList';
 import LocationsList from './LocationsList';
-import { Pet } from '../requests';
-// import NewComment from './NewComment';
+import { Pet, Comment } from '../requests';
+import NewCommentForm from './NewCommentForm';
 import CommentForm from './CommentForm';
 import LocationForm from './LocationForm';
 
@@ -46,16 +46,23 @@ class PetShowPage extends Component {
     })
   }
 
-  createComment(commentParams) {
-    const { pet } = this.state;
+  // createComment(commentParams) {
+  //   const { pet } = this.state;
 
-    this.setState({
-      pet: {
-        ...pet,
-        comments: [commentParams, ...pet.comments]
+  //   this.setState({
+  //     pet: {
+  //       ...pet,
+  //       comments: [commentParams, ...pet.comments]
+  //     }
+  //   });
+  // }
+  createComment = (id, params) => {
+    Comment.create(id, params).then(comment => {
+      if (comment.errors) {
+        this.setState({ errors: comment.errors });
       }
     });
-  }
+  };
 
 
   createLocation (locationParams) {
@@ -94,11 +101,12 @@ class PetShowPage extends Component {
       <main>
         <PetDetails pet={this.state.pet}> </PetDetails>
         <h2>Comments</h2>
+        {/* <NewCommentForm pet={this.state.pet} onSubmit={this.createComment}></NewCommentForm> */}
         <CommentForm onSubmit={this.createComment} updatePet={this.updatePet}></CommentForm>
-        <LocationForm onSubmit={this.createLocation} updatePet={this.updatePet}></LocationForm>
+        {/* <LocationForm onSubmit={this.createLocation} updatePet={this.updatePet}></LocationForm> */}
         {/* <NewComment title='title' body='body'></NewComment> */}
         <CommentsList comments={this.state.pet.comments} handleDeleteComment={this.state.deleteComment}/>
-        <LocationsList locations={this.state.pet.locations} />
+        {/* <LocationsList locations={this.state.pet.locations} /> */}
       </main>
     )
   }
