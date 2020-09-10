@@ -8,5 +8,16 @@ class Api::V1::UsersController < Api::ApplicationController
         render json: { error: user.errors }
       end
     end
+
+    def index
+      user = User.find(params[:id])
+      render json: {user: user, avatar_url: url_for(user.avatar) }
+    end
+
+    def show
+      user = User.find(params[:id])
+      render json: {user: user, avatar_url: url_for(user.avatar) }
+    end
+
   end
   

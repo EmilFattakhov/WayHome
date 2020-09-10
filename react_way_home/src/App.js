@@ -14,6 +14,7 @@ import Navbar from './components/NavBar';
 import PetShowPage from './components/PetShowPage';
 import Home from './components/mapsFeatures/Home';
 import './App.css';
+import Post from './components/createPDF/Post';
 
 
 class App extends Component {
@@ -32,12 +33,13 @@ class App extends Component {
     this.getCurrentUser();
   }
 
+
   getCurrentUser() {
     Session.getCurrentUser()
       .then(user => {
         this.setState((state) => {
           return {
-            user: user
+            user: user,
           }
         })
       });
@@ -54,9 +56,10 @@ class App extends Component {
   render() {
     return (
         <BrowserRouter>
-      <Navbar user={this.state.user}/>
+      <Navbar user={this.state.user} />
       <div className='mainImage'></div>
         <Switch>
+          <Route path='/posts' exact={true} component={Post}/>
           <Route path='/pets' exact={true} component={PetIndexPage}/>
           <Route path='/pets/new' component={PetCreatePage} />
           <Route path='/pets/:id' component={PetShowPage} currentUser={this.state.user}/>

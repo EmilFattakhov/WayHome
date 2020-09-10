@@ -16,7 +16,7 @@ class Api::V1::PetsController < Api::ApplicationController
 
     pet.user = current_user
     if pet.save
-        render json:{id: pet.id, pictures: pictures}
+        render json:{id: pet.id}
     else
         render(
             json: {errors: pet.errors},

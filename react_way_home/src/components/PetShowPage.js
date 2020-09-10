@@ -11,7 +11,8 @@ class PetShowPage extends Component {
   constructor(props) {
     super(props); // in all React Class components you must always call the `super(props)` within the constructor
     this.state = {
-      pet: {}
+      pet: {},
+      locat: {},
     }
     this.createLocation = this.createLocation.bind(this)
     
@@ -60,6 +61,18 @@ class PetShowPage extends Component {
       }
     });
   };
+
+  // handleChange = (newValue) => {
+  //   this.setState( (state) => {
+  //     const newPetCopy = {...state.locat};
+  //     return {
+  //       locat: {
+  //         ...newPetCopy,
+  //         ...newValue
+  //       }
+  //     }
+  //   });
+  // }
   
 
   render() {

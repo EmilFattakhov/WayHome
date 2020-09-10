@@ -73,6 +73,7 @@ export const User = {
       },
       body: JSON.stringify(params)
     }).then(res => res.json());
+  
   }
 }
 

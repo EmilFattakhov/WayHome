@@ -22,7 +22,7 @@ Rails.application.routes.draw do
                 # resource :location, only: [:create]
                 # resources :locations, only: [:create, :show]
                 # resources :comments, only: [:create, :show]
-                resources :users, only: [:create, :show]
+                resources :users
                 get "/current_user", to: "sessions#get_current_user_from_session"
               end
       end

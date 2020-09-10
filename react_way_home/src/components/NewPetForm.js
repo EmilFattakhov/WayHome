@@ -9,6 +9,13 @@ export default function NewPetForm( { handleSubmit, name, description, animal, a
     )
   }
 
+  function handleImageUpdate(e) {
+    const input = e.target;
+    updatePetParams(
+      {[input.name]: input.files[0].name}
+    )
+  }
+
   return(
     <form onSubmit={(event) => { 
       event.preventDefault(); // prevent default behaviour of form submission (just like vanilla javascript)
@@ -28,7 +35,7 @@ export default function NewPetForm( { handleSubmit, name, description, animal, a
       <label className='form-input' htmlFor='breed'>breed</label>
       <input className='form-input' type='text' name='breed' id='breed' value={breed} onInput={handleUpdate}/>
       <label className='form-input' htmlFor='colour'>colour</label>
-      <input type='text' name='colour' id='colour' value={colour} onInput={handleUpdate}/>
+      <input type='file' name='colour' id='colour' value={colour} onInput={handleUpdate}/>
       <label className='form-input' htmlFor='location_lost'>location_lost</label>
       <input type='text' name='location_lost' id='location_lost' value={location_lost} onInput={handleUpdate}/>
       <label className='form-input' htmlFor='distinctive_features'>distinctive_features</label>
