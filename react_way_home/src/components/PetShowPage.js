@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PetDetails from './PetDetails';
 import CommentsList from './CommentsList';
 import LocationsList from './LocationsList';
-import { Pet, Comment } from '../requests';
+import { Pet, Comment, Location } from '../requests';
 import NewCommentForm from './NewCommentForm';
 import CommentForm from './CommentForm';
-import LocationForm from './LocationForm';
+import NewLocationForm from './NewLocationForm';
 
 class PetShowPage extends Component {
   constructor(props) {
@@ -13,10 +13,8 @@ class PetShowPage extends Component {
     this.state = {
       pet: {}
     }
-    this.deleteComment = this.deleteComment.bind(this) // if you pass down a function that needs access to `this` then you should .bind(this) within the constructor
-    this.createComment = this.createComment.bind(this)
     this.createLocation = this.createLocation.bind(this)
-    this.updatePet = this.updatePet.bind(this)
+    
   }
 
   componentDidMount() {
@@ -46,16 +44,6 @@ class PetShowPage extends Component {
     })
   }
 
-  // createComment(commentParams) {
-  //   const { pet } = this.state;
-
-  //   this.setState({
-  //     pet: {
-  //       ...pet,
-  //       comments: [commentParams, ...pet.comments]
-  //     }
-  //   });
-  // }
   createComment = (id, params) => {
     Comment.create(id, params).then(comment => {
       if (comment.errors) {
@@ -65,48 +53,28 @@ class PetShowPage extends Component {
   };
 
 
-  createLocation (locationParams) {
-    const { pet } = this.state;
-
-    this.setState({
-      pet: {
-        ...pet,
-        locations: [locationParams, ...pet.locations]
+  createLocation = (id, params) => {
+    Location.create(id, params).then(location=> {
+      if (location.errors) {
+        this.setState( {errors: location.errors } )
       }
     });
-    console.log('pet',pet);
-    console.log('state', this.state)
-  }
-
-  updatePet() {
-    Pet.update(this.state.pet)
-    .then(res => {
-      console.log('res from update pet', res)
-      if (res.id) {
-        this.props.history.push('./pets/${res.id}')
-      }
-      if (res.errors) {
-        this.setState(() => {
-          return {
-            errors: res.errors
-          }
-        })
-      }
-    });
-    }
+  };
   
 
   render() {
+    const currentUser = this.props.currentUser;
     return(
       <main>
         <PetDetails pet={this.state.pet}> </PetDetails>
         <h2>Comments</h2>
-        {/* <NewCommentForm pet={this.state.pet} onSubmit={this.createComment}></NewCommentForm> */}
-        <CommentForm onSubmit={this.createComment} updatePet={this.updatePet}></CommentForm>
+        <NewCommentForm pet={this.state.pet} onSubmit={this.createComment}></NewCommentForm>
+        <NewLocationForm pet={this.state.pet} onSubmit={this.createLocation}></NewLocationForm>
+        {/* <CommentForm onSubmit={this.createComment} updatePet={this.updatePet}></CommentForm> */}
         {/* <LocationForm onSubmit={this.createLocation} updatePet={this.updatePet}></LocationForm> */}
         {/* <NewComment title='title' body='body'></NewComment> */}
         <CommentsList comments={this.state.pet.comments} handleDeleteComment={this.state.deleteComment}/>
-        {/* <LocationsList locations={this.state.pet.locations} /> */}
+        <LocationsList locations={this.state.pet.locations} />
       </main>
     )
   }

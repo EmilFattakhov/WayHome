@@ -59,7 +59,7 @@ class App extends Component {
         <Switch>
           <Route path='/pets' exact={true} component={PetIndexPage}/>
           <Route path='/pets/new' component={PetCreatePage} />
-          <Route path='/pets/:id' component={PetShowPage} />
+          <Route path='/pets/:id' component={PetShowPage} currentUser={this.state.user}/>
           <Route path='/sign_in'
             render={
             (routeProps) => {

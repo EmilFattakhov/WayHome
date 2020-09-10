@@ -89,3 +89,16 @@ export const Comment = {
   }
 };
 
+export const Location = {
+  create(id, params) {
+    return fetch(`${BASE_URL}/pets/${id}/locations`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(params)
+    }).then(res => res.json());
+  }
+};
+

@@ -2,7 +2,6 @@ import React from 'react'
 import CommentDetails from './CommentDetails';
 
 function CommentsList(props) {
-  console.log('props from Comments List', props)
   return(
     <>
       { props.comments ? props.comments.map( (comment, i) => {

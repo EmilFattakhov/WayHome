@@ -1,6 +1,6 @@
 class Api::V1::CommentsController < Api::ApplicationController
 
-    before_action :authenticate_user!, except: [:index, :show]
+    # before_action :authenticate_user!, except: [:index, :show]
     before_action :find_comment, only: [ :destroy]
 
     def index
@@ -14,7 +14,7 @@ class Api::V1::CommentsController < Api::ApplicationController
         render(
           json: @comment    )
         else
-          render(json: {error: 'Bid Not found'})
+          render(json: {error: 'Comment Not found'})
         end
       end
     
@@ -26,5 +26,15 @@ class Api::V1::CommentsController < Api::ApplicationController
         comment.save!
         render json: { id: comment.id }
       end
+
+      private
+
+      def find_comment
+       @comment ||= Comment.find params[:id]
+      end
+
+  def comment_params
+    params.require(:comment).permit(:title, :body)
+  end
 
 end
