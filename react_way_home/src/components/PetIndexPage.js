@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Pet } from '../requests';
 import { Link } from 'react-router-dom';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel'
 
 class PetIndexPage extends Component {
   constructor(props) {
@@ -21,29 +23,36 @@ class PetIndexPage extends Component {
       });
   }
 
+  
   render() {
     return(
-      <main id='question-index-page'>
-        <h1>Pets Index Page</h1>
-        <ul>
+      <main>
+        <h1 className='lostpets'>Recently lost pets</h1>
+        <div className='griddiv'>
           {this.state.pets.map((pet) => {
             console.log(pet)
-            return <li key={pet.id}>
-                 <Link to={`/pets/${pet.id}`}> {pet.name} </Link>
-                 <img src={pet.image1} width='150' height='150' ></img>
-                 <p> Description: {pet.description} </p>
-                 <p> Animal: {pet.animal} </p>
-                 <p> Age: {pet.age} </p>
-                 <p> Sex: {pet.sex} </p>
-                 <p> Breed: {pet.breed} </p>
-                 <p> Colour: {pet.colour} </p>
-                 <p> Location Lost: {pet.location_lost} </p>
-                 <p> Time Lost: {pet.time_lost} </p>
-                 <p> Flag: {pet.flag} </p>
-                 {/* <p> Pictures: {pet.pictures} </p> */}
-            </li>
+            return(
+              <>
+                <div className='grid-element' key={pet.id}>
+                { pet.flag == 'found' ? <div className='found'></div> : ""}
+                { pet.flag == 'lost' ? <div className='lost'></div> : ""}
+                { pet.flag == 'returned' ? <div className='returned'></div> : ""}
+                    <Carousel className="carousel" showThumbs={false} showStatus={false} boardArrows>
+                      <div className='image-cropper'>
+                        <img className='profile-pic' src={pet.image1}></img>
+                      </div>
+                      <div className='image-cropper'>
+                        <img className='profile-pic' src={pet.image2}></img>
+                      </div>
+                      <div className='image-cropper'>
+                        <img className='profile-pic' src={pet.image3}></img>
+                      </div>
+                    </Carousel>
+                    <div className='petname'><Link to={`/pets/${pet.id}`}> <h1 className='name'> {pet.name} </h1> </Link></div>
+                 </div>
+                 </>)
           })}
-        </ul>
+          </div>
       </main>
     )
   }

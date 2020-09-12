@@ -1,6 +1,6 @@
 .mainImage {
     width: 100%;
-    height: 100px;
+    height: 150px;
     background-image: url("https://images.unsplash.com/photo-1581527106934-25bc16f1d310?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
     background-position: center;
     background-size: 100%;
@@ -10,8 +10,8 @@
 
 .logo{
     position: absolute;
-    width: 200px;
-    height: 160px;
+    width: 140px;
+    height: 90px;
     margin: 0;
     padding: 0;
     background-image: url('./Images/logo.png') ;
@@ -20,7 +20,7 @@
 }
 
 .nav{
-    height: 130px;
+    height: 90px;
     display: flex;
     justify-content: flex-end;
     /* align-items: baseline; */
@@ -91,3 +91,87 @@
     color: #FF7851;
 }
 
+
+.carousel {
+    width: 200px;
+    height: 200px;
+    border: 0.1px solid #FF7851 ;
+    border-radius: 50%;
+}
+
+.image-cropper {
+    width: 200px;
+    height: 200px;
+    border: 0.1px solid #FF7851 ;
+    border-radius: 50%;
+}
+
+.profile-pic {
+    width: 200px;
+    height: auto;
+}
+
+.name {
+    font-family: 'Grandstander';
+    font-size: x-large;
+    text-decoration: none;
+}
+
+.griddiv {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    justify-content: center;
+}
+.grid-element{
+    justify-self: center;
+}
+
+.petname {
+    justify-content: center;
+}
+
+.lostpets{
+    font-family: 'Grandstander';
+    font-size: x-large;
+    color: #FF7851;
+    margin: 3% 43% 3% 43%;
+}
+
+.found {
+    z-index: 1;
+    position: absolute;
+    margin: -40px;
+    background-image: url(./Images/INFH.png);
+    background-size: 120px;
+    background-position: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.lost {
+    z-index: 1;
+    position: absolute;
+    margin: -40px;
+    background-image: url(./Images/SWH.png);
+    background-size: 120px;
+    background-position: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.returned {
+    z-index: 1;
+    position: absolute;
+    margin: -40px;
+    background-image: url(./Images/FWH.png);
+    background-size: 120px;
+    background-position: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+
+  

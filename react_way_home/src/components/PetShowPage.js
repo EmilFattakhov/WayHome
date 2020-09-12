@@ -7,6 +7,8 @@ import NewCommentForm from './NewCommentForm';
 import CommentForm from './CommentForm';
 import NewLocationForm from './NewLocationForm';
 
+
+
 class PetShowPage extends Component {
   constructor(props) {
     super(props); // in all React Class components you must always call the `super(props)` within the constructor
