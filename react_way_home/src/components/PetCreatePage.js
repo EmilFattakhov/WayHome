@@ -25,7 +25,9 @@ class PetCreatePage extends Component {
         distinctive_features: '',
         flag: '',
         time_lost: '',
-        pictures: []
+		image1: '',
+		image2: '',
+		image3: '',
       },
       errors: { },
       map: {
@@ -353,6 +355,7 @@ class PetCreatePage extends Component {
         }
        
         <NewPetForm
+		
           handleSubmit={this.createPet}
           name={this.state.newPetParams.name}
           description={this.state.newPetParams.description}
@@ -366,17 +369,19 @@ class PetCreatePage extends Component {
           distinctive_features={this.state.newPetParams.distinctive_features}
           flag={this.state.newPetParams.flag}
           time_lost={this.state.newPetParams.time_lost}
-          pictures={this.state.newPetParams.pictures}
+		  image1={this.state.newPetParams.image1}
+		  image2={this.state.newPetParams.image2}
+		  image3={this.state.newPetParams.image3}
           updatePetParams={this.updatePetParams}
         />
         {/* to show pet's picture */}
-        {
+        {/* {
           (this.state.newPetParams.pictures[0]) ? (
             <div>
             <img width="100" height="100" src={this.state.newPetParams.pictures[0]} />
             </div>
           ) : null
-          }
+          } */}
 
           {showmap} 
         {/* Remember! when you pass down a method as a function through props the `this` value within the, now, function will be the global scope! So we need to make sure we bind the method to force the `this` value to be QuestionCreatePage */}

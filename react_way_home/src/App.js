@@ -10,7 +10,8 @@ import { Session } from './requests';
 import PetCreatePage from './components/PetCreatePage';
 import SignInPage from './components/SignInPage';
 import NewUserPage from './components/NewUserPage';
-import Navbar from './components/NavBar';
+import NavBar from './components/NavBar';
+// import Navbar from './components/Navbar/Navbar'
 import PetShowPage from './components/PetShowPage';
 import Home from './components/mapsFeatures/Home';
 import './App.css';
@@ -22,7 +23,6 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
-      avatar_url: '',
     }
     
     this.getCurrentUser = this.getCurrentUser.bind(this);
@@ -39,7 +39,7 @@ class App extends Component {
       .then(user => {
         this.setState((state) => {
           return {
-            user: user,
+            user: user
           }
         })
       });
@@ -56,8 +56,8 @@ class App extends Component {
   render() {
     return (
         <BrowserRouter>
-      <Navbar user={this.state.user} />
-      <div className='mainImage'></div>
+        <NavBar user={this.state.user} />
+        <div className='mainImage'></div>
         <Switch>
           <Route path='/posts' exact={true} component={Post}/>
           <Route path='/pets' exact={true} component={PetIndexPage}/>

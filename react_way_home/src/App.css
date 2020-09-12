@@ -1,11 +1,93 @@
 .mainImage {
     width: 100%;
     height: 100px;
-
     background-image: url("https://images.unsplash.com/photo-1581527106934-25bc16f1d310?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
-    
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
+.logo{
+    position: absolute;
+    width: 200px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    background-image: url('./Images/logo.png') ;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.nav{
+    height: 130px;
+    display: flex;
+    justify-content: flex-end;
+    /* align-items: baseline; */
+    background-color:#FF7851 ;
+}
+
+.link{
+    align-self: center;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+
+
+.linkbutton {
+    background-color: #FF7851;
+    color:white;
+    font-family: 'Grandstander';
+    font-size: large;
+    font-weight: 900;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+
+.linkbutton:hover {
+    background-color: #ff7865;
+    transition: 0.8s;
+    transform: scale(1.2);
+}
+
+.verticalline{
+    border-left: 2px solid white;
+    height: 60px;
+}
+
+.useravatar {
+    width: 100px;
+    border: 3px solid white;
+    border-radius: 50%;
+}
+
+.username {
+    color:white;
+    font-family: 'Grandstander';
+    font-size: large;
+}
+
+.petbutton {
+    color: #FF7851;
+    background-color:white;
+    font-family: 'Grandstander';
+    font-size: large;
+    font-weight: 900;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+.petbutton:hover {
+    transition: 0.8s;
+    transform: scale(1.2);
+}
+
+.dropdown {
+    font-family: 'Grandstander';
+    font-size: large;
+    background-color: white;
+    color: #FF7851;
+}
+

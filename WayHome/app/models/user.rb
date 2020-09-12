@@ -4,7 +4,7 @@ class User < ApplicationRecord
     has_many :locations, dependent: :nullify
 
     has_secure_password
-    has_one_attached :avatar
+    # has_one_attached :avatar
 
 
     VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i

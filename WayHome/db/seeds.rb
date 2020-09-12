@@ -60,7 +60,6 @@ NUM_PETS.times do
         age: Faker::FunnyName,
         sex: Faker::FunnyName,
         breed: Faker::FunnyName,
-        colour: Faker::FunnyName,
         location_lost: Faker::Address.city,
         distinctive_features: Faker::FunnyName,
         flag: Faker::FunnyName, 

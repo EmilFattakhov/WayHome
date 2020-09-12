@@ -10,6 +10,7 @@ function SignInPage( { signIn, history }) {
       password: formData.get('password')
     }
     signIn(params);
+    
     history.push('/pets');
   }
   

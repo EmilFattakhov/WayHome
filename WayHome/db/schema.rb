@@ -70,6 +70,9 @@ ActiveRecord::Schema.define(version: 2020_09_01_232042) do
     t.string "distinctive_features"
     t.string "flag"
     t.string "time_lost"
+    t.string "image1"
+    t.string "image2"
+    t.string "image3"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
@@ -94,6 +97,7 @@ ActiveRecord::Schema.define(version: 2020_09_01_232042) do
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "avatar"
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false

@@ -15,7 +15,9 @@ class PetSerializer < ActiveModel::Serializer
     :time_lost,
     :created_at, 
     :updated_at,
-    :pictures,
+    :image1,
+    :image2,
+    :image3,
     :locations,
   )
 

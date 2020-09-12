@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 export default function NewUserPage() {
 
-  const [profilePicture, setProfilePicture] = useState('#');
   
   function handleSubmit(event) {
     event.preventDefault();
@@ -13,14 +12,10 @@ export default function NewUserPage() {
       body: fd,
       credentials: 'include'
     }).then(res => res.json())
-    .then(payload => {
-      setProfilePicture(payload.avatar_url)
-    });
   }
 
   return(
     <main>
-      <img src={profilePicture} height="500px" width="500px"/>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor='first_name'>First Name</label>
@@ -43,7 +38,8 @@ export default function NewUserPage() {
           <input type='password' name='password_confirmation' />
         </div>
         <div>
-          <input type='file' name='avatar' />
+          <label htmlFor='avatar'>Avatar</label>
+          <input type='text' name='avatar' />
         </div>
         <div>
           <input type='submit' value='create user' />

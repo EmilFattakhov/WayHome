@@ -5,7 +5,7 @@ class Pet < ApplicationRecord
     has_many :tags, through: :taggings
     has_many :locations, dependent: :destroy
     
-    has_many_attached :pictures
+    # has_many_attached :pictures
 
     belongs_to :user
 

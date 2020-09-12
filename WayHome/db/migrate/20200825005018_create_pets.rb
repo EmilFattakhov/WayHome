@@ -13,6 +13,9 @@ class CreatePets < ActiveRecord::Migration[6.0]
       t.string :distinctive_features
       t.string :flag
       t.string :time_lost
+      t.string :image1
+      t.string :image2
+      t.string :image3
 
   
       t.timestamps

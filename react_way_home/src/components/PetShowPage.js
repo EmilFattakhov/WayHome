@@ -21,9 +21,6 @@ class PetShowPage extends Component {
   componentDidMount() {
     Pet.show(this.props.match.params.id)
       .then(pet => {
-        console.log('pet', pet)
-        console.log('pet location',pet.locations);
-        console.log('pet pictures', pet.pictures)
         this.setState(() => {
           return {
             pet: pet

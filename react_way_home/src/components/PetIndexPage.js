@@ -27,8 +27,10 @@ class PetIndexPage extends Component {
         <h1>Pets Index Page</h1>
         <ul>
           {this.state.pets.map((pet) => {
+            console.log(pet)
             return <li key={pet.id}>
                  <Link to={`/pets/${pet.id}`}> {pet.name} </Link>
+                 <img src={pet.image1} width='150' height='150' ></img>
                  <p> Description: {pet.description} </p>
                  <p> Animal: {pet.animal} </p>
                  <p> Age: {pet.age} </p>
