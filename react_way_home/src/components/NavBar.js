@@ -1,9 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-function NavBar({ user }) {
+function NavBar({ user, signout }) {
 
 const [listOpen, setListOpen] = useState(false);
+
+const signOut = event => {
+  event.preventDefault();
+  signout();
+};
 
 const Dropdown = ({ callbackFromParent }) => {
 	const node = useRef();
@@ -26,8 +31,8 @@ const Dropdown = ({ callbackFromParent }) => {
 
 	return (
 			<div className='dropdown'>
-                <div className='link'> <Link to='/pets'> <button className='linkbutton'> Lost pets near me  </button> </Link> </div>
-				<div className='link'> <Link to='/pets'> <button className='linkbutton'> Lost pets near me  </button> </Link> </div>
+                <div className='link'> <Link to='/pets'> <button className='linkbutton'> I've got someone's pet  </button> </Link> </div>
+				<div className='link'> <Link to='/pets'> <button className='linkbutton'> I want to create a Found Pet Ad</button> </Link> </div>
 			</div>
 	);
 };
@@ -44,6 +49,7 @@ const Dropdown = ({ callbackFromParent }) => {
           <div className='link'> {user ? (<div>  <h1 className='username'>{user.first_name} {user.last_name} </h1> </div>) : (<Link to='/sign_in'><button className='linkbutton'> Sign In  </button></Link>)} </div>
           <div className='link'> <div className='verticalline'></div> </div>
           <div className='link'> <Link to='/pets/new'> <button className='petbutton'> I lost a Pet <i class="fas fa-plus-circle"></i> </button> </Link>  </div>
+          <a href="#" onClick={signOut}>Sign Out</a>
       </nav>
       </ React.Fragment>
     // <nav className='nav'>

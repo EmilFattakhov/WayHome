@@ -92,11 +92,12 @@
 }
 
 
-.carousel {
+.carousel1 {
     width: 200px;
     height: 200px;
     border: 0.1px solid #FF7851 ;
     border-radius: 50%;
+    background-color: white;
 }
 
 .image-cropper {
@@ -104,11 +105,18 @@
     height: 200px;
     border: 0.1px solid #FF7851 ;
     border-radius: 50%;
+    background-color: white;
 }
 
 .profile-pic {
     width: 200px;
-    height: auto;
+    height: 200px;
+    border: 0.1px solid #FF7851;
+    border-radius: 50%;
+}
+
+.carousel .slide{
+    background-color: white;
 }
 
 .name {
@@ -171,6 +179,21 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
+}
+
+.carousel2 {
+    height: auto;
+    margin: 0 auto;
+}
+
+.grid-show-page{
+    display: grid;
+    grid-template-columns: 60% 30% 10%;
+}
+
+.container{
+    font-family: 'Grandstander';
+    margin-left: 3%;
 }
 
 

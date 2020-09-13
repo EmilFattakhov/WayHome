@@ -16,4 +16,9 @@ class Api::V1::SessionsController < Api::ApplicationController
   def get_current_user_from_session
     render json: current_user
   end
+
+  def delete
+    session[:user_id] = nil 
+    # redirect_to root_path, notice: 'Logged Out!'
+  end
 end

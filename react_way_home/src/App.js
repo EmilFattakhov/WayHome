@@ -27,6 +27,7 @@ class App extends Component {
     
     this.getCurrentUser = this.getCurrentUser.bind(this);
     this.signIn = this.signIn.bind(this);
+    this.signOut = this.signOut.bind(this);
   }
 
   componentDidMount() {
@@ -53,10 +54,15 @@ class App extends Component {
       }); 
   }
 
+  signOut() {
+    return Session.destroy();
+    // return Session.destroy().then(() => this.reload());
+  }
+
   render() {
     return (
         <BrowserRouter>
-        <NavBar user={this.state.user} />
+        <NavBar user={this.state.user} signout={this.signOut} />
         <div className='mainImage'></div>
         <Switch>
           <Route path='/posts' exact={true} component={Post}/>
