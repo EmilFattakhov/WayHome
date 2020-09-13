@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 2020_09_01_232042) do
     t.string "breed"
     t.string "colour"
     t.string "location_lost"
+    t.string "lat"
+    t.string "lng"
     t.string "distinctive_features"
     t.string "flag"
     t.string "time_lost"

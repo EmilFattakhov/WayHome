@@ -12,8 +12,10 @@ import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "reac
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
 import { GoogleMapsAPI } from './mapsFeatures/client/client-config';
+import CustomMarker from './mapsFeatures/customMarker';
 Geocode.setApiKey( GoogleMapsAPI );
 Geocode.enableDebug();
+
 
 
 
@@ -50,12 +52,21 @@ class PetShowPage extends Component {
     Pet.show(this.props.match.params.id)
       .then(pet => {
         this.setState(() => {
+          console.log(pet)
           return {
-            pet: pet
+            pet: pet,
+            mapPosition: {
+              lat: parseFloat(pet.lat),
+              lng: parseFloat(pet.lng),
+            },
+            markerPosition: {
+              lat: parseFloat(pet.lat),
+              lng: parseFloat(pet.lng),
+            }
           }
         })
       })
-      Geocode.fromLatLng( this.state.mapPosition.lat , this.state.mapPosition.lng ).then(
+      Geocode.fromLatLng( this.state.pet.lat , this.state.pet.lng ).then(
         response => {
           const address = response.results[0].formatted_address,
                 addressArray =  response.results[0].address_components;
@@ -114,9 +125,6 @@ class PetShowPage extends Component {
 		}
   }
  
-  
-
-  
 
   render() {
     const AsyncMap = withScriptjs(
@@ -126,13 +134,11 @@ class PetShowPage extends Component {
 					           defaultZoom={ this.state.zoom }
 					           defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
 					>	
-						<Marker google={this.props.google}
-						        name={'Dolores park'}
-						        draggable={true}
-						        onDragEnd={ this.onMarkerDragEnd }
-						        position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
-						/>
-						<Marker />
+						<Marker position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}/>
+            { this.state.pet.locations.map( (location, i) => {
+              console.log('location', location)
+              return(<Marker position={{ lat: parseFloat(location.lat), lng: parseFloat(location.long) }} > </Marker>)
+            })};
 					</ GoogleMap >
         )
 			)
@@ -163,20 +169,21 @@ class PetShowPage extends Component {
     return(
       <main className='main'>
         <div className='grid-show-page'>
-          <PetDetails pet={this.state.pet}> </PetDetails>
+          <div><PetDetails pet={this.state.pet}> </PetDetails>
+          {showmap} 
+          </div>
           <Carousel className='carousel2' showThumbs={false} showStatus={false}>
-                      <div>
+                      <div className='carousel2-image'>
                         <img src={this.state.pet.image1}></img>
                       </div>
-                      <div>
+                      <div className='carousel2-image'>
                         <img src={this.state.pet.image2}></img>
                       </div>
-                      <div>
+                      <div className='carousel2-image'>
                         <img src={this.state.pet.image3}></img>
                       </div>
                     </Carousel>
         </div>
-        {showmap} 
         <h2>Comments</h2>
         <NewCommentForm pet={this.state.pet} onSubmit={this.createComment}></NewCommentForm>
         <NewLocationForm pet={this.state.pet} onSubmit={this.createLocation}></NewLocationForm>

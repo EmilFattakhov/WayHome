@@ -11,7 +11,7 @@ class CreatePets < ActiveRecord::Migration[6.0]
       t.string :colour
       t.string :location_lost
       t.string :lat
-      t,string :lng
+      t.string :lng
       t.string :distinctive_features
       t.string :flag
       t.string :time_lost

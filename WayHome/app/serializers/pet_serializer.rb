@@ -19,6 +19,8 @@ class PetSerializer < ActiveModel::Serializer
     :image2,
     :image3,
     :locations,
+    :lat, 
+    :lng
   )
 
   belongs_to :user, key: :author

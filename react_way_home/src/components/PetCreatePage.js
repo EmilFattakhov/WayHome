@@ -28,6 +28,8 @@ class PetCreatePage extends Component {
 		image1: '',
 		image2: '',
 		image3: '',
+		lat: '',
+		lng: '',
       },
       errors: { },
       map: {
@@ -223,7 +225,9 @@ class PetCreatePage extends Component {
             },
             newPetParams: {
               ...prevState.newPetParams,
-              location_lost: address,
+			  location_lost: address,
+			  lat: newLat,
+			  lng: newLng,
             }
           }))
 			},
@@ -308,25 +312,6 @@ class PetCreatePage extends Component {
     let showmap;
 		if (this.state.center.lat !== undefined ) {
       showmap = <div>
-				<div>
-					<div className="form-group">
-						<label htmlFor="">City</label>
-						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.map.city }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">Area</label>
-						<input type="text" name="area" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.map.area }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">State</label>
-						<input type="text" name="state" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.map.state }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">Address</label>
-						<input type="text" name="address" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.map.address }/>
-					</div>
-				</div>
-
 				<AsyncMap
 					googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GoogleMapsAPI}&libraries=places&language=en`}
 					loadingElement={
