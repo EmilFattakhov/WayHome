@@ -78,7 +78,11 @@ export const User = {
       },
       body: JSON.stringify(params)
     }).then(res => res.json());
-  
+  },
+  show(params) {
+    return fetch(`${BASE_URL}/users/show`, {
+      credentials: 'include'
+    }).then(res => res.json());
   }
 }
 

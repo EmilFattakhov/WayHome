@@ -6,6 +6,7 @@ import { Pet, Comment, Location } from '../requests';
 import NewCommentForm from './NewCommentForm';
 import CommentForm from './CommentForm';
 import NewLocationForm from './NewLocationForm';
+import NewPetForm from './NewPetForm'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel'
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
@@ -13,11 +14,12 @@ import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
 import { GoogleMapsAPI } from './mapsFeatures/client/client-config';
 import CustomMarker from './mapsFeatures/customMarker';
+import HeatmapLayer from "react-google-maps/lib/components/visualization/HeatmapLayer"
 Geocode.setApiKey( GoogleMapsAPI );
 Geocode.enableDebug();
 
 
-
+let show = false;
 
 class PetShowPage extends Component {
   constructor(props) {
@@ -44,7 +46,9 @@ class PetShowPage extends Component {
         lng: -123.120735,
         }
     }
-    this.createLocation = this.createLocation.bind(this)
+    this.createLocation = this.createLocation.bind(this);
+    this.updatePet=this.updatePet.bind(this);
+    this.updatePetParams=this.updatePetParams.bind(this);
     
   }
 
@@ -53,6 +57,7 @@ class PetShowPage extends Component {
       .then(pet => {
         this.setState(() => {
           console.log(pet)
+          console.log('locations', pet.locations)
           return {
             pet: pet,
             mapPosition: {
@@ -79,6 +84,36 @@ class PetShowPage extends Component {
           console.error( error );
         }
       );
+  }
+
+
+  updatePet() {
+    console.log(this.state.pet)
+    Pet.update(this.state.pet)
+      .then(res => {
+        if(res.id) {
+          this.props.history.push(`/pets/${res.id}`)
+        }
+        if (res.errors) {
+          this.setState(() => {
+            return {
+              errors: res.errors
+            }
+          })
+        }
+      });
+  }
+
+  updatePetParams(params) {
+    this.setState( (state) => {
+      const newPetCopy = {...state.pet};
+      return {
+        pet: {
+          ...newPetCopy,
+          ...params
+        }
+      }
+    })
   }
 
   deleteComment(id) { 
@@ -124,21 +159,31 @@ class PetShowPage extends Component {
 			return false
 		}
   }
- 
+  
+  buttonClick() {
+    show = true
+  }
 
   render() {
+    const heatMapData = {
+      positions: this.state.pet.locations,
+      options: {radius: 10, opacity: 0.6}
+    }
     const AsyncMap = withScriptjs(
 			withGoogleMap(
 				props => (
 					<GoogleMap google={ this.state.google }
 					           defaultZoom={ this.state.zoom }
-					           defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
+                     defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
+                     heatmapLibrary={true}
+                     heatmap={heatMapData}
+
 					>	
 						<Marker position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}/>
-            { this.state.pet.locations.map( (location, i) => {
+            { this.state.pet.locations? (this.state.pet.locations.map( (location, i) => {
               console.log('location', location)
               return(<Marker position={{ lat: parseFloat(location.lat), lng: parseFloat(location.long) }} > </Marker>)
-            })};
+            })) : '' };
 					</ GoogleMap >
         )
 			)
@@ -192,6 +237,26 @@ class PetShowPage extends Component {
         {/* <NewComment title='title' body='body'></NewComment> */}
         <CommentsList comments={this.state.pet.comments} handleDeleteComment={this.state.deleteComment}/>
         <LocationsList locations={this.state.pet.locations} />
+        <button onClick={this.buttonClick}>Edit Pet</button>
+        <NewPetForm
+          handleSubmit={this.updatePet}
+          name={this.state.pet.name}
+          description={this.state.pet.description}
+          animal={this.state.pet.animal}
+          age={this.state.pet.age}
+          sex={this.state.pet.sex}
+          breed={this.state.pet.breed}
+          colour={this.state.pet.colour}
+          location_lost={this.state.map.address}
+          // location_lost={this.state.newPetParams.location_lost}
+          distinctive_features={this.state.pet.distinctive_features}
+          flag={this.state.pet.flag}
+          time_lost={this.state.pet.time_lost}
+          image1={this.state.pet.image1}
+          image2={this.state.pet.image2}
+          image3={this.state.pet.image3}
+          updatePetParams={this.updatePetParams}
+        />
       </main>
     )
   }

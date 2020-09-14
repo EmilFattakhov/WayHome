@@ -16,6 +16,7 @@ import PetShowPage from './components/PetShowPage';
 import Home from './components/mapsFeatures/Home';
 import './App.css';
 import Post from './components/createPDF/Post';
+import UserDashboard from './components/UserDashboard';
 
 
 class App extends Component {
@@ -65,6 +66,7 @@ class App extends Component {
         <NavBar user={this.state.user} signout={this.signOut} />
         <div className='mainImage'></div>
         <Switch>
+          <Route path='/dashboard' component={UserDashboard}></Route>
           <Route path='/posts' exact={true} component={Post}/>
           <Route path='/pets' exact={true} component={PetIndexPage}/>
           <Route path='/pets/new' component={PetCreatePage} />

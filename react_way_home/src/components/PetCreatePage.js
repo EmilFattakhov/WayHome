@@ -92,6 +92,22 @@ class PetCreatePage extends Component {
       });
   }
 
+  updatePet() {
+    Pet.update(this.state.newPetParams)
+      .then(res => {
+        if(res.id) {
+          this.props.history.push(`/pets/${res.id}`)
+        }
+        if (res.errors) {
+          this.setState(() => {
+            return {
+              errors: res.errors
+            }
+          })
+        }
+      });
+  }
+
   componentDidMount() {
 		Geocode.fromLatLng( this.state.mapPosition.lat , this.state.mapPosition.lng ).then(
 			response => {

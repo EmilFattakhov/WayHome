@@ -13,6 +13,7 @@ export default function PetDetails(props) {
       <h1>Age {props.pet.age}</h1>
       <h1>Sex {props.pet.sex}</h1>
       <h1>Breed {props.pet.breed}</h1>
+      <h1>Flag {props.pet.flag}</h1>
       <h1>Colour {props.pet.colour}</h1>
       <h1>Location {props.pet.location_lost}</h1>
       <h1>Time lost {props.pet.time_lost}</h1>

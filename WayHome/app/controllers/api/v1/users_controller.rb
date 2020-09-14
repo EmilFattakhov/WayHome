@@ -14,11 +14,11 @@ class Api::V1::UsersController < Api::ApplicationController
     #   render json: {user: user, avatar_url: url_for(user.avatar) }
     # end
 
-    # def show
-    #   user = User.find(params[:id])
-    #   avatar = rails_blob_path(user.avatar)
-    #   render json: { user: user, avatar: avatar }
-    # end
+    def index
+      user = User.find(params[:id])
+      pets = Pet.find(params[user])
+      render json: { pets: pets }
+    end
 
   end
   
