@@ -14,10 +14,14 @@ class Api::V1::UsersController < Api::ApplicationController
     #   render json: {user: user, avatar_url: url_for(user.avatar) }
     # end
 
-    def index
+    #   def show
+    #     @user=User.find(session[:user_id])
+    # end
+    def show
       user = User.find(params[:id])
-      pets = Pet.find(params[user])
-      render json: { pets: pets }
+      pets = Pet.where(user_id: user)
+      # pets = Pet.find(params[user.id])
+      render json: { user: user, pets: pets }
     end
 
   end

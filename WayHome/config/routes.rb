@@ -18,7 +18,7 @@ Rails.application.routes.draw do
                         resources :comments
                         resources :locations
                       end
-                resource :session, only:[:create]
+                resource :session, only:[:create, :delete, :destroy]
                 # resource :location, only: [:create]
                 # resources :locations, only: [:create, :show]
                 # resources :comments, only: [:create, :show]

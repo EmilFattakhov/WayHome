@@ -42,6 +42,7 @@ export default function NewPetForm( { handleSubmit, name, description, animal, a
       <input type='text' name='distinctive_features' id='distinctive_features' value={distinctive_features} onInput={handleUpdate}/>
       <label className='form-input' htmlFor='flag'>Choose a current status</label>
       <select id='flag' name = 'flag' onChange={handleUpdate}>
+        <option value='' selected disabled hidden>What's the pet current status?</option>
         <option value='lost' >Lost</option>
         <option value='found' >Found</option>
         <option value='returned' >Returned Home</option>

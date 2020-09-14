@@ -19,7 +19,8 @@ Geocode.setApiKey( GoogleMapsAPI );
 Geocode.enableDebug();
 
 
-let show = false;
+let showPetForm = false;
+let showLocationForm = false;
 
 class PetShowPage extends Component {
   constructor(props) {
@@ -49,6 +50,8 @@ class PetShowPage extends Component {
     this.createLocation = this.createLocation.bind(this);
     this.updatePet=this.updatePet.bind(this);
     this.updatePetParams=this.updatePetParams.bind(this);
+    this.buttonPetFormClick=this.buttonPetFormClick.bind(this);
+    this.sendEmail=this.sendEmail.bind(this);
     
   }
 
@@ -160,8 +163,11 @@ class PetShowPage extends Component {
 		}
   }
   
-  buttonClick() {
-    show = true
+  buttonPetFormClick() {
+    showPetForm = true
+  }
+  buttonMapClick() {
+    showLocationForm = true
   }
 
   render() {
@@ -231,14 +237,17 @@ class PetShowPage extends Component {
         </div>
         <h2>Comments</h2>
         <NewCommentForm pet={this.state.pet} onSubmit={this.createComment}></NewCommentForm>
-        <NewLocationForm pet={this.state.pet} onSubmit={this.createLocation}></NewLocationForm>
+        <button onClick={this.buttonMapClick}>Show Map</button>
+        {/* <div><Link to={`/pets/${pet.id}`}> <h1 className='name'> {pet.name} </h1> </Link></div> */}
+        { showLocationForm? (<NewLocationForm pet={this.state.pet} onSubmit={this.createLocation}></NewLocationForm>) :'' }
         {/* <CommentForm onSubmit={this.createComment} updatePet={this.updatePet}></CommentForm> */}
         {/* <LocationForm onSubmit={this.createLocation} updatePet={this.updatePet}></LocationForm> */}
         {/* <NewComment title='title' body='body'></NewComment> */}
         <CommentsList comments={this.state.pet.comments} handleDeleteComment={this.state.deleteComment}/>
         <LocationsList locations={this.state.pet.locations} />
-        <button onClick={this.buttonClick}>Edit Pet</button>
-        <NewPetForm
+        
+        <button onClick={this.buttonPetFormClick}>Edit Pet</button>
+        {showPetForm? (<NewPetForm
           handleSubmit={this.updatePet}
           name={this.state.pet.name}
           description={this.state.pet.description}
@@ -256,7 +265,7 @@ class PetShowPage extends Component {
           image2={this.state.pet.image2}
           image3={this.state.pet.image3}
           updatePetParams={this.updatePetParams}
-        />
+        />) : " "}
       </main>
     )
   }

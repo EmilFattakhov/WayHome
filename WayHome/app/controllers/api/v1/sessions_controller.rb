@@ -17,7 +17,7 @@ class Api::V1::SessionsController < Api::ApplicationController
     render json: current_user
   end
 
-  def delete
+  def destroy
     session[:user_id] = nil 
     # redirect_to root_path, notice: 'Logged Out!'
   end
