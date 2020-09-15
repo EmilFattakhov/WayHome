@@ -15,6 +15,8 @@ import Autocomplete from 'react-google-autocomplete';
 import { GoogleMapsAPI } from './mapsFeatures/client/client-config';
 import CustomMarker from './mapsFeatures/customMarker';
 import HeatmapLayer from "react-google-maps/lib/components/visualization/HeatmapLayer"
+
+
 Geocode.setApiKey( GoogleMapsAPI );
 Geocode.enableDebug();
 
@@ -51,7 +53,6 @@ class PetShowPage extends Component {
     this.updatePet=this.updatePet.bind(this);
     this.updatePetParams=this.updatePetParams.bind(this);
     this.buttonPetFormClick=this.buttonPetFormClick.bind(this);
-    this.sendEmail=this.sendEmail.bind(this);
     
   }
 
@@ -170,6 +171,8 @@ class PetShowPage extends Component {
     showLocationForm = true
   }
 
+  
+
   render() {
     const heatMapData = {
       positions: this.state.pet.locations,
@@ -225,7 +228,7 @@ class PetShowPage extends Component {
           </div>
           <Carousel className='carousel2' showThumbs={false} showStatus={false}>
                       <div className='carousel2-image'>
-                        <img src={this.state.pet.image1}></img>
+                        <img id='petimage' src={this.state.pet.image1}></img>
                       </div>
                       <div className='carousel2-image'>
                         <img src={this.state.pet.image2}></img>
