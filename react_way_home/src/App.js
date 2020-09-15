@@ -18,6 +18,7 @@ import './App.css';
 import Post from './components/createPDF/Post';
 import UserDashboard from './components/UserDashboard';
 import ContactForm from './components/EmailJS/ContactForm'
+import SearchComponent from './components/SearchComponent'
 
 class App extends Component {
   constructor(props) {
@@ -66,6 +67,7 @@ class App extends Component {
         <NavBar user={this.state.user} signout={this.signOut} />
         <div className='mainImage'></div>
         <Switch>
+          <Route path='/tags' component={SearchComponent}></Route>
           <Route path='/contact_form' component={ContactForm}></Route>
           <Route path='/dashboard' component={UserDashboard}></Route>
           <Route path='/posts' exact={true} component={Post}/>

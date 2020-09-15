@@ -31,8 +31,8 @@ const Dropdown = ({ callbackFromParent }) => {
 
 	return (
 			<div className='dropdown'>
-                <div className='link'> <Link to='/pets'> <button className='linkbutton'> I've got someone's pet  </button> </Link> </div>
-				<div className='link'> <Link to='/pets'> <button className='linkbutton'> I want to create a Found Pet Ad</button> </Link> </div>
+                <div className='link'> <Link to='/tags'> <button className='linkbutton'> I've got someone's pet  </button> </Link> </div>
+				<div className='link'> <Link to='/pets/new'> <button className='linkbutton'> I want to create a Found Pet Ad</button> </Link> </div>
 			</div>
 	);
 };
