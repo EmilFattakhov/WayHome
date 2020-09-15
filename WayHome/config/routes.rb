@@ -24,6 +24,7 @@ Rails.application.routes.draw do
                 # resources :comments, only: [:create, :show]
                 resources :users
                 get "/current_user", to: "sessions#get_current_user_from_session"
+                get '/tags', to: 'pets#show_with_search'
               end
       end
   

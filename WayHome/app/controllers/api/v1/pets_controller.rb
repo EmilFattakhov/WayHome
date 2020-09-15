@@ -11,6 +11,15 @@ class Api::V1::PetsController < Api::ApplicationController
     render(json: pet)
   end
 
+  def show_with_search
+    # pets = Pet.where(animal: params[:query])
+    # pets = Pet.where(params[:query])
+    tag = params[:tag]
+    # pets = Pet.where( (animal: tag ) or (breed: tag))
+    pets = Pet.where("animal ilike ? OR breed ilike ?", tag, tag)
+    render(json: pets)
+  end
+
   def create
     pet=Pet.new(params.require(:pet).permit(:name, :description, :animal, :age, :sex, :breed, :colour, :location_lost, :distinctive_features, :flag, :time_lost, :image1, :image2, :image3, :lat, :lng))
 

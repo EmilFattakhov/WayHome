@@ -24,5 +24,6 @@ class Api::V1::UsersController < Api::ApplicationController
       render json: { user: user, pets: pets }
     end
 
+
   end
   
