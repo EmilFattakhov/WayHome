@@ -28,6 +28,15 @@
     outline: none;
 }
 
+.petform-form select{
+    width: 100%;
+    height: 100%;
+    color: #595f6e;
+    padding-top: 15px;
+    border:none;
+    outline: none;
+}
+
 .petform-form label {
     position: absolute;
     bottom: 0px;
@@ -41,6 +50,18 @@
 }
 
 .petform-form label::after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    bottom: -1px;
+    height: 100%;
+    width: 100%;
+    border-bottom: 3px solid rgb(94, 94, 184);
+    transform: translateX(-100%);
+    transition: all 0,3s ease;
+}
+
+.petform-form select::after {
     content: '';
     position: absolute;
     left: 0px;
@@ -66,5 +87,15 @@
 }
 
 .petform-form input:focus + .label-name::after, .petform-form input:valid + .label-name::after{
+    transform: translateX(0%);
+}
+
+.petform-form select:focus + .label-name .content-name, .petform-form select:valid + .label-name .content-name{
+    transform: translateY(-150%);
+    font-size: 14px;
+    color: #5fa8d3
+}
+
+.petform-form select:focus + .label-name::after, .petform-form select:valid + .label-name::after{
     transform: translateX(0%);
 }

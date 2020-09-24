@@ -53,12 +53,37 @@ export default function NewPetForm( { handleSubmit, name, description, animal, a
          </div>
          <div className='petform-form'>
             <input type='text' name='distinctive_features' id='distinctive_features' value={distinctive_features} onInput={handleUpdate} autoComplete='off' required></input>
-            <label for='distinctive_features' className='label-name'> <span className='content-name'> Location Lost </span> </label>
+            <label for='distinctive_features' className='label-name'> <span className='content-name'> Distinctive Features </span> </label>
          </div>
          <div className='petform-form'>
-            <input type='text' name='distinctive_features' id='distinctive_features' value={distinctive_features} onInput={handleUpdate} autoComplete='off' required></input>
-            <label for='distinctive_features' className='label-name'> <span className='content-name'> Location Lost </span> </label>
+                  <select id='flag' name = 'flag' onChange={handleUpdate}>
+                    <option value='' selected disabled hidden>What's the pet current status?</option>
+                    <option value='lost' >Lost</option>
+                    <option value='found' >Found</option>
+                    <option value='returned' >Returned Home</option>
+                  </select>
+            <label for='flag' className='label-name'> <span className='content-name'> Choose a current status </span> </label>
          </div>
+         <div className='petform-form'>
+            <input type='text' name='time_lost' id='time_lost' value={time_lost} onInput={handleUpdate} autoComplete='off' required></input>
+            <label for='time_lost' className='label-name'> <span className='content-name'> Time Lost </span> </label>
+         </div>
+         <div className='petform-form'>
+            <input type='text' name='image1' id='image1' value={image1} onInput={handleUpdate} autoComplete='off' required></input>
+            <label for='image1' className='label-name'> <span className='content-name'> Image 1 </span> </label>
+         </div>
+         <div className='petform-form'>
+            <input type='text' name='image2' id='image2' value={image2} onInput={handleUpdate} autoComplete='off' required></input>
+            <label for='image2' className='label-name'> <span className='content-name'> Image 2 </span> </label>
+         </div>
+         <div className='petform-form'>
+            <input type='text' name='image3' id='image3' value={image3} onInput={handleUpdate} autoComplete='off' required></input>
+            <label for='image3' className='label-name'> <span className='content-name'> Image 3 </span> </label>
+         </div>
+         <div className='petform-form'>
+            <input type='submit' value='Create Pet'/>
+         </div>
+
        </form>
      </div>
     </>
