@@ -1,0 +1,49 @@
+.main {
+    display: flex;
+    justify-content: center;
+    border: 1.5px solid black; 
+    margin: 5% 10% 10% 10%;
+    height: 25em;
+}
+
+.form-container{
+    width: 100%;
+    height: 100%;
+}
+.signup-content {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.signup-img{
+    background-image: url('https://cdn.pixabay.com/photo/2020/04/17/09/32/pet-5054023_960_720.jpg');
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-position-y: -15px;
+    background-size: 150%;
+    background-repeat: no-repeat;
+}
+.signup-form{
+    display:flex;
+    justify-self: center;
+    width: 100%
+}
+
+.form-input{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 100%;
+}
+
+input{
+    width: 100%
+}
+label{
+
+}
+
+
+

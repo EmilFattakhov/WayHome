@@ -327,7 +327,7 @@ class PetCreatePage extends Component {
     
     let showmap;
 		if (this.state.center.lat !== undefined ) {
-      showmap = <div>
+      showmap = <div className='showmap'>
 				<AsyncMap
 					googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GoogleMapsAPI}&libraries=places&language=en`}
 					loadingElement={
@@ -356,7 +356,8 @@ class PetCreatePage extends Component {
         }
        
         <NewPetForm
-		
+		  className='NewPetForm'
+
           handleSubmit={this.createPet}
           name={this.state.newPetParams.name}
           description={this.state.newPetParams.description}
@@ -375,17 +376,7 @@ class PetCreatePage extends Component {
 		  image3={this.state.newPetParams.image3}
           updatePetParams={this.updatePetParams}
         />
-        {/* to show pet's picture */}
-        {/* {
-          (this.state.newPetParams.pictures[0]) ? (
-            <div>
-            <img width="100" height="100" src={this.state.newPetParams.pictures[0]} />
-            </div>
-          ) : null
-          } */}
-
           {showmap} 
-        {/* Remember! when you pass down a method as a function through props the `this` value within the, now, function will be the global scope! So we need to make sure we bind the method to force the `this` value to be QuestionCreatePage */}
       </main>
     )
   }

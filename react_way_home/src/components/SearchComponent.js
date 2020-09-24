@@ -6,7 +6,7 @@ import { Carousel } from 'react-responsive-carousel'
 
 
 const Search = ({ location }) => {
-    const [language, setLanguage] = useState('');
+    const [searchParams, setSearchParams] = useState('');
     const [input, setInput] = useState('');
     const [pets, setPets] = useState([]);
   
@@ -16,12 +16,12 @@ const Search = ({ location }) => {
      
       const tag = params.get('tag');
       
-      setLanguage(tag ? tag : 'MatLab');
+      setSearchParams(tag ? tag : 'dog');
     }, []);
   
     const submitAction = (e) => {
       e.preventDefault();
-      setLanguage(input);
+      setSearchParams(input);
       axios.get('http://localhost:3000/api/v1/tags?tag=' + input).then((response) => { setPets(response.data)})
       console.log(pets)
       setInput('');
