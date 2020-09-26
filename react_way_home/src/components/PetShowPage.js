@@ -221,11 +221,44 @@ class PetShowPage extends Component {
     const currentUser = this.props.currentUser;
     
     return(
-      <main className='main'>
-        <div className='grid-show-page'>
-          <div><PetDetails pet={this.state.pet}> </PetDetails>
-          {showmap} 
+      <main>
+          <div className='petshow-container'>
+            <div className='petshow-left'>
+              <Carousel className='petshow-carousel' showThumbs={false} showStatus={false}>
+                <div className='petshow-carousel-image'>
+                  <img className='petshow-image' src={this.state.pet.image1}></img>
+                </div>
+                <div className='petshow-carousel-image'>
+                  <img className='petshow-image' src={this.state.pet.image2}></img>
+                </div>
+                <div className='petshow-carousel-image'>
+                  <img className='petshow-image' src={this.state.pet.image3}></img>
+                </div>
+              </Carousel>
+            </div>
+          <div className='petshow-right'>
+            <PetDetails pet={this.state.pet}/>
           </div>
+        </div>
+        <div className='petshow-container'>
+            <div className='petshow-map-and-buttons-left'>{showmap} </div>
+            <div className='petshow-map-and-buttons-right'> 
+
+              <button className='petshow-button onClick={this.buttonMapClick}'>I've seen {this.state.pet.name}</button>
+              <button className='petshow-button'>I've found {this.state.pet.name}</button> 
+              <h2>Comments</h2>
+              <CommentsList comments={this.state.pet.comments} handleDeleteComment={this.state.deleteComment}/>
+              <NewCommentForm pet={this.state.pet} onSubmit={this.createComment}></NewCommentForm>
+            </div>
+        </div>
+        <div className='petshow-container'>
+
+        </div>
+        {/* <div className='grid-show-page'>
+          <div><PetDetails pet={this.state.pet}> </PetDetails>
+          // {showmap} 
+          </div>
+
           <Carousel className='carousel2' showThumbs={false} showStatus={false}>
                       <div className='carousel2-image'>
                         <img id='petimage' src={this.state.pet.image1}></img>
@@ -237,19 +270,19 @@ class PetShowPage extends Component {
                         <img src={this.state.pet.image3}></img>
                       </div>
                     </Carousel>
-        </div>
-        <h2>Comments</h2>
+        </div> */}
+        {/* <h2>Comments</h2>
         <NewCommentForm pet={this.state.pet} onSubmit={this.createComment}></NewCommentForm>
-        <button onClick={this.buttonMapClick}>Show Map</button>
+        <button onClick={this.buttonMapClick}>Show Map</button> */}
         {/* <div><Link to={`/pets/${pet.id}`}> <h1 className='name'> {pet.name} </h1> </Link></div> */}
-        { showLocationForm? (<NewLocationForm pet={this.state.pet} onSubmit={this.createLocation}></NewLocationForm>) :'' }
+        {/* { showLocationForm? (<NewLocationForm pet={this.state.pet} onSubmit={this.createLocation}></NewLocationForm>) :'' } */}
         {/* <CommentForm onSubmit={this.createComment} updatePet={this.updatePet}></CommentForm> */}
         {/* <LocationForm onSubmit={this.createLocation} updatePet={this.updatePet}></LocationForm> */}
         {/* <NewComment title='title' body='body'></NewComment> */}
-        <CommentsList comments={this.state.pet.comments} handleDeleteComment={this.state.deleteComment}/>
-        <LocationsList locations={this.state.pet.locations} />
+        {/* <CommentsList comments={this.state.pet.comments} handleDeleteComment={this.state.deleteComment}/>
+        <LocationsList locations={this.state.pet.locations} /> */}
         
-        <button onClick={this.buttonPetFormClick}>Edit Pet</button>
+        {/* <button onClick={this.buttonPetFormClick}>Edit Pet</button>
         {showPetForm? (<NewPetForm
           handleSubmit={this.updatePet}
           name={this.state.pet.name}
@@ -268,7 +301,7 @@ class PetShowPage extends Component {
           image2={this.state.pet.image2}
           image3={this.state.pet.image3}
           updatePetParams={this.updatePetParams}
-        />) : " "}
+        />) : " "} */}
       </main>
     )
   }

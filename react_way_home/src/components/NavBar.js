@@ -39,7 +39,7 @@ const Dropdown = ({ callbackFromParent }) => {
 
   return(
       <React.Fragment className='fragment'>
-      <span className='logo'></span>
+      <Link to='/pets'><span className='logo'></span></Link>
         <nav className='nav'>
           <div className='link'> <button className='linkbutton' onMouseEnter={() => setListOpen(!listOpen)}>I found a Pet </button> <div>{listOpen ? <Dropdown /> : null}</div> </div>
           <div className='link'> <Link to='/pets'> <button className='linkbutton'> Lost pets near me  </button> </Link> </div>

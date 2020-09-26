@@ -14,18 +14,26 @@ function NewCommentForm(props) {
   }
 
   return (
-    <form onSubmit={handleCommentSubmit}>
-      <div>
+    <form className='petform-form-container' onSubmit={handleCommentSubmit}>
+      <div className='petform-form'>
+          <input type='text' name='body' autoComplete='off' required ></input>
+          <label for='body' className='label-name'> <span className='content-name'> Place your comment here </span> </label>
+      </div>
+      <div className='petform-form-submit'>
+          <input type='submit' value='Create comment'></input>
+      </div>
+    </form>
+      /* <div>
         <label>Title</label>
         <input type="text" name="title" id="title" />
-        <label>Body</label>
+        <label>Place your comment</label>
         <input type="text" name="body" id="body" />
-      </div>
+      </div> */
 
-      <button className="ui button" type="submit">
-        Comment
-      </button>
-    </form>
+    //   <button className="ui button" type="submit">
+    //     Comment
+    //   </button>
+    // </form>
   );
 }
 

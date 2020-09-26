@@ -77,10 +77,10 @@ export default function NewPetForm( { handleSubmit, name, description, animal, a
             <label for='image2' className='label-name'> <span className='content-name'> Image 2 </span> </label>
          </div>
          <div className='petform-form'>
-            <input type='text' name='image3' id='image3' value={image3} onInput={handleUpdate} autoComplete='off' required></input>
+            <input type='text' name='image' id='image3' value={image3} onInput={handleUpdate} autoComplete='off' required></input>
             <label for='image3' className='label-name'> <span className='content-name'> Image 3 </span> </label>
          </div>
-         <div className='petform-form'>
+         <div className='petform-form-submit'>
             <input type='submit' value='Create Pet'/>
          </div>
 
