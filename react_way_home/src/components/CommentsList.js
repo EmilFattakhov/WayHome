@@ -5,7 +5,7 @@ function CommentsList(props) {
   return(
     <>
       { props.comments ? props.comments.map( (comment, i) => {
-        return <CommentDetails id={comment.id} key={i} body={comment.body} author={comment.author} createdAt={comment.createdAt} handleDeleteComment={props.handleDeleteComment}/>
+        return <CommentDetails id={comment.id} key={i} body={comment.body} author={comment.author_full_name} createdAt={comment.createdAt} handleDeleteComment={props.handleDeleteComment}/>
       }) : null }
     </>
   )

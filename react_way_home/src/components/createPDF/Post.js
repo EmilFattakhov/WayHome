@@ -7,10 +7,6 @@ class Post extends Component {
         name: '',
         description: '',
         animal: '',
-        age: '',
-        sex: '',
-        breed: '',
-        colour: '',
         location_lost: '',
         time_lost: '',
         distinctive_features: '',
@@ -19,6 +15,9 @@ class Post extends Component {
     }
 
     onChange = input => e => {
+        console.log('e', e);
+        console.log('e.target.value', e.target.value)
+        console.log('input', input)
         this.setState({
             [input]: e.target.value
         });
@@ -58,6 +57,10 @@ class Post extends Component {
                                 <div className='petform-form'>
                                     <input onChange={this.onChange('location_lost')} name="location_lost" type="text" autoComplete='off' required ></input>
                                     <label for='location_lost' className='label-name'> <span className='content-name'> Location Lost </span> </label>
+                                </div>
+                                <div className='petform-form'>
+                                    <input onChange={this.onChange('distinctive_features')} name="distinctive_features" type="text" autoComplete='off' required ></input>
+                                    <label for='distinctive_features' className='label-name'> <span className='content-name'> Distinctive Features </span> </label>
                                 </div>
                                 <div className='petform-form'>
                                     <input onChange={this.onChange('time_lost')} name="time_lost" type="text" autoComplete='off' required ></input>

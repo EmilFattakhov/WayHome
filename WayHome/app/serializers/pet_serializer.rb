@@ -26,7 +26,7 @@ class PetSerializer < ActiveModel::Serializer
   belongs_to :user, key: :author
 
   class UserSerializer < ActiveModel::Serializer
-    attributes :id, :first_name, :last_name, :full_name
+    attributes :id, :first_name, :last_name, :full_name, :email
   end
   has_many :comments
 

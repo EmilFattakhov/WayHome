@@ -1,7 +1,8 @@
 import React from 'react';
 import emailjs from 'emailjs-com';
+import { Pet } from '../../requests';
 
-export default function ContactForm() {
+export default function ContactForm( {pet, onSubmit}) {
     function sendEmail(e) {
         e.preventDefault();
 
@@ -10,17 +11,25 @@ export default function ContactForm() {
                 console.log(result.text)
             }, (error) => {
                 console.log(error.text);
-            });
+            }).then( () => {
+                onSubmit();
+            }).then(() =>{
+                alert('Email has been sent')
+            })
+            
     }
 
     return(
         <div>
             <div>
-                <form onSubmit={sendEmail}>
-                    <div> <input type='text' placeholder='Name' name='name'/> </div>
-                    <div> <input type='email' placeholder='Email address' name='email'/>  </div>
-                    <div> <textarea cols='10' rows='8' placeholder='Your message' name='message'/> </div>
-                    <div> <input type='submit' value='Send Message'/> </div>
+                <form className='contact-form-container' onSubmit={sendEmail}>
+                    <div> <h1>Send email to the pet owner</h1> </div>
+                    <div className='contact-form'> <input type='text' placeholder='Your Name' name='name'/> </div>
+                    <div className='email-hidden'> <input type='email' name='email' value={pet.author.email}></input></div>
+                    <div className='email-hidden'> <input type='text' name='authorname' value={pet.author.full_name}></input></div>
+                    <div className='contact-form'> <input type='email' placeholder='Your email address' name='useremail'/>  </div>
+                    <div className='contact-form'> <input type='text' placeholder='Your message' name='message'/> </div>
+                    <div className='contact-form'> <input type='submit' value='Send Message'/> </div>
                 </form>
             </div>
         </div>

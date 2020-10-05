@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel'
-
+import PetCreatePage from './PetCreatePage'
 
 const Search = ({ location }) => {
     const [searchParams, setSearchParams] = useState('');
@@ -29,22 +29,27 @@ const Search = ({ location }) => {
   
     return (
       <>
-            <form onSubmit={submitAction} className='mt-5'>
-              <div className='input-group'>
-                <input
+      <div className='petform-container'>
+            <form onSubmit={submitAction} className='petform-form-container'>
+              <div className='petform-form'>
+                    <input type='text' name='name' id='name' value={input} onChange={(e) => setInput(e.target.value)} autoComplete='off' required ></input>
+                    <label for='name' className='label-name'> <span className='content-name'> Start searching here </span> </label>
+              </div>
+                {/* <input
                   type='text'
                   className='form-control'
                   placeholder='Type your pet parameters...'
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                />
-                <div className='input-group-append'>
-                  <button className='btn btn-primary' type='submit'>
+                /> */}
+                <div className='petform-form-submit'>
+                <input className='submit' type='submit' value='Search!'/>
+                  {/* <button className='btn btn-primary' type='submit'>
                     Go!
-                  </button>
-                </div>
+                  </button>  */}
               </div>
             </form>
+            </div> 
             <div className='griddiv'>
           {pets.map((pet) => {
             console.log(pet)
@@ -70,7 +75,7 @@ const Search = ({ location }) => {
             </>)
                     })}
                  </div>
-          
+                 <div className='center-div'><div className='link-to-new'> <Link to={`/pets/new`}> <h1 className='name'> Don't see a pet you are looking for? Create found pet listing </h1> </Link> </div></div>
       </>
     );
   };

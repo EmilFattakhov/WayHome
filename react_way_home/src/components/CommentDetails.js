@@ -6,7 +6,7 @@ function CommentsDetails(props) {
     <div>
       <p>
         {props.body}<br/>
-      <small>by { props.author ? props.author.full_name : ''}</small>
+      <small>by { props.author ? props.author : ''}</small>
       </p>
     </div>
   )

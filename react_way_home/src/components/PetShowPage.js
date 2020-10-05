@@ -13,16 +13,12 @@ import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "reac
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
 import { GoogleMapsAPI } from './mapsFeatures/client/client-config';
-import CustomMarker from './mapsFeatures/customMarker';
-import HeatmapLayer from "react-google-maps/lib/components/visualization/HeatmapLayer"
+import ContactForm from './EmailJS/ContactForm'
 
 
 Geocode.setApiKey( GoogleMapsAPI );
 Geocode.enableDebug();
 
-
-let showPetForm = false;
-let showLocationForm = false;
 
 class PetShowPage extends Component {
   constructor(props) {
@@ -47,34 +43,26 @@ class PetShowPage extends Component {
       markerPosition: {
         lat: 49.282730,
         lng: -123.120735,
-        }
+        },
+      showPetForm : false,
+      showLocationForm : false,
+      showContactForm: false,
     }
     this.createLocation = this.createLocation.bind(this);
     this.updatePet=this.updatePet.bind(this);
     this.updatePetParams=this.updatePetParams.bind(this);
     this.buttonPetFormClick=this.buttonPetFormClick.bind(this);
+    this.buttonMapClick = this.buttonMapClick.bind(this);
+    this.buttonContactFormClick= this.buttonContactFormClick.bind(this);
+    this.getPet = this.getPet.bind(this);
+    this.sendLetter = this.sendLetter.bind(this);
     
   }
 
   componentDidMount() {
-    Pet.show(this.props.match.params.id)
-      .then(pet => {
-        this.setState(() => {
-          console.log(pet)
-          console.log('locations', pet.locations)
-          return {
-            pet: pet,
-            mapPosition: {
-              lat: parseFloat(pet.lat),
-              lng: parseFloat(pet.lng),
-            },
-            markerPosition: {
-              lat: parseFloat(pet.lat),
-              lng: parseFloat(pet.lng),
-            }
-          }
-        })
-      })
+    this.getPet();
+  
+    
       Geocode.fromLatLng( this.state.pet.lat , this.state.pet.lng ).then(
         response => {
           const address = response.results[0].formatted_address,
@@ -90,13 +78,32 @@ class PetShowPage extends Component {
       );
   }
 
+  getPet() {
+    Pet.show(this.props.match.params.id)
+      .then(pet => {
+        this.setState(() => {
+          return {
+            pet: pet,
+            mapPosition: {
+              lat: parseFloat(pet.lat),
+              lng: parseFloat(pet.lng),
+            },
+            markerPosition: {
+              lat: parseFloat(pet.lat),
+              lng: parseFloat(pet.lng),
+            }
+          }
+        })
+      }).then(()=>{
+        console.log('pet', this.state.pet)
+      })
+  }
 
   updatePet() {
-    console.log(this.state.pet)
     Pet.update(this.state.pet)
       .then(res => {
         if(res.id) {
-          this.props.history.push(`/pets/${res.id}`)
+          // this.props.history.push(`/pets/${res.id}`)
         }
         if (res.errors) {
           this.setState(() => {
@@ -134,12 +141,20 @@ class PetShowPage extends Component {
   }
 
   createComment = (id, params) => {
+
     Comment.create(id, params).then(comment => {
+      // this.props.history.push(`./pets/${this.state.pet.id}`)
+    
       if (comment.errors) {
         this.setState({ errors: comment.errors });
       }
+    }).then (() => {
+      this.getPet();
     });
   };
+  // Tip: use await async instead of .then
+  // async
+  // await
 
 
   createLocation = (id, params) => {
@@ -147,7 +162,15 @@ class PetShowPage extends Component {
       if (location.errors) {
         this.setState( {errors: location.errors } )
       }
+    }).then (() => {
+      this.getPet();
+    }).then (() => {
+      this.setState( {showLocationForm : false})
     });
+  };
+
+  sendLetter = () => {
+      this.setState( {showContactForm : false})
   };
 
   shouldComponentUpdate( nextProps, nextState ){
@@ -165,10 +188,17 @@ class PetShowPage extends Component {
   }
   
   buttonPetFormClick() {
-    showPetForm = true
+    this.setState( {showPetForm : true})
   }
+
   buttonMapClick() {
-    showLocationForm = true
+    this.setState( {showLocationForm : true})
+    window.scrollBy(0, 1000)
+  }
+
+  buttonContactFormClick() {
+    this.setState( {showContactForm : true})
+    window.scrollBy(0, 1000)
   }
 
   
@@ -190,7 +220,7 @@ class PetShowPage extends Component {
 					>	
 						<Marker position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}/>
             { this.state.pet.locations? (this.state.pet.locations.map( (location, i) => {
-              console.log('location', location)
+              
               return(<Marker position={{ lat: parseFloat(location.lat), lng: parseFloat(location.long) }} > </Marker>)
             })) : '' };
 					</ GoogleMap >
@@ -241,19 +271,47 @@ class PetShowPage extends Component {
           </div>
         </div>
         <div className='petshow-container'>
-            <div className='petshow-map-and-buttons-left'>{showmap} </div>
+            <div className='petshow-map-and-buttons-left'>
+              <div className='petshow-map-left'>
+                <h1>{this.state.pet.name} was spotted here: </h1>
+                {showmap} 
+              </div>
+            </div>
             <div className='petshow-map-and-buttons-right'> 
-
-              <button className='petshow-button onClick={this.buttonMapClick}'>I've seen {this.state.pet.name}</button>
-              <button className='petshow-button'>I've found {this.state.pet.name}</button> 
+              <button className='petshow-button' onClick={this.buttonMapClick}>I've seen {this.state.pet.name}</button>
+              <button className='petshow-button' onClick={this.buttonContactFormClick}>I've found {this.state.pet.name}</button> 
               <h2>Comments</h2>
               <CommentsList comments={this.state.pet.comments} handleDeleteComment={this.state.deleteComment}/>
               <NewCommentForm pet={this.state.pet} onSubmit={this.createComment}></NewCommentForm>
             </div>
         </div>
         <div className='petshow-container'>
-
+          <div className='petshow-container-location'>
+              
+              { this.state.showLocationForm? (<> <div className='petshow-map-left'>  <h1>Point to the location you've seen {this.state.pet.name} on the map</h1> <NewLocationForm pet={this.state.pet} onSubmit={this.createLocation}></NewLocationForm> </div> </>) :'' } 
+              
+              <div className='petshow-map-left'> { this.state.showContactForm? (<ContactForm pet={this.state.pet} onSubmit={this.sendLetter}> </ContactForm>) :'' } </div>
+          </div>
         </div>
+        {/* <div><NewPetForm
+          handleSubmit={this.updatePet}
+          name={this.state.pet.name}
+          description={this.state.pet.description}
+          animal={this.state.pet.animal}
+          age={this.state.pet.age}
+          sex={this.state.pet.sex}
+          breed={this.state.pet.breed}
+          colour={this.state.pet.colour}
+          location_lost={this.state.map.address}
+          // location_lost={this.state.newPetParams.location_lost}
+          distinctive_features={this.state.pet.distinctive_features}
+          flag={this.state.pet.flag}
+          time_lost={this.state.pet.time_lost}
+          image1={this.state.pet.image1}
+          image2={this.state.pet.image2}
+          image3={this.state.pet.image3}
+          updatePetParams={this.updatePetParams}
+        /></div> */}
         {/* <div className='grid-show-page'>
           <div><PetDetails pet={this.state.pet}> </PetDetails>
           // {showmap} 
@@ -281,9 +339,7 @@ class PetShowPage extends Component {
         {/* <NewComment title='title' body='body'></NewComment> */}
         {/* <CommentsList comments={this.state.pet.comments} handleDeleteComment={this.state.deleteComment}/>
         <LocationsList locations={this.state.pet.locations} /> */}
-        
-        {/* <button onClick={this.buttonPetFormClick}>Edit Pet</button>
-        {showPetForm? (<NewPetForm
+        {/* <NewPetForm
           handleSubmit={this.updatePet}
           name={this.state.pet.name}
           description={this.state.pet.description}
@@ -301,7 +357,27 @@ class PetShowPage extends Component {
           image2={this.state.pet.image2}
           image3={this.state.pet.image3}
           updatePetParams={this.updatePetParams}
-        />) : " "} */}
+        /> */}
+        {/* <button onClick={this.buttonPetFormClick}>Edit Pet</button>
+        // {showPetForm? (<NewPetForm
+        //   handleSubmit={this.updatePet}
+        //   name={this.state.pet.name}
+        //   description={this.state.pet.description}
+        //   animal={this.state.pet.animal}
+        //   age={this.state.pet.age}
+        //   sex={this.state.pet.sex}
+        //   breed={this.state.pet.breed}
+        //   colour={this.state.pet.colour}
+        //   location_lost={this.state.map.address}
+        //   // location_lost={this.state.newPetParams.location_lost}
+        //   distinctive_features={this.state.pet.distinctive_features}
+        //   flag={this.state.pet.flag}
+        //   time_lost={this.state.pet.time_lost}
+        //   image1={this.state.pet.image1}
+        //   image2={this.state.pet.image2}
+        //   image3={this.state.pet.image3}
+        //   updatePetParams={this.updatePetParams}
+        // />) : " "} */}
       </main>
     )
   }

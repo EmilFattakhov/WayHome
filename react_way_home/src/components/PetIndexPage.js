@@ -61,7 +61,7 @@ class PetIndexPage extends Component {
                       </div>
                     </Carousel>
                     <div className='petname'><Link to={`/pets/${pet.id}`}> <h1 className='name'> {pet.name} </h1> </Link></div>
-                    <button data-id={pet.id} onClick={this.deletePet}>Delete</button>
+                    {/* <button data-id={pet.id} onClick={this.deletePet}>Delete</button> */}
                  </div>
                  </>)
           })}

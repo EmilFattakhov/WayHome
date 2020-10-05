@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './NewUserPage.css'
+import { useHistory } from 'react-router-dom';
 export default function NewUserPage() {
-
+  const history = useHistory();
   
   function handleSubmit(event) {
+    
     event.preventDefault();
     const { currentTarget } = event;
     const fd = new FormData(currentTarget);
@@ -11,7 +13,12 @@ export default function NewUserPage() {
       method: 'POST',
       body: fd,
       credentials: 'include'
-    }).then(res => res.json())
+    }).then(res => res.json()
+    ).then(() => {
+       history.push({
+              pathname:'/pets'
+       })
+    })
   }
 
   return(
@@ -43,7 +50,7 @@ export default function NewUserPage() {
                                <label for='avatar' className='label-name'> <span className='content-name'> Avatar </span> </label>
                         </div>
                         <div className='petform-form-submit'>
-                               <input type='submit' value='create user'></input>
+                               <input className='submit' type='submit' value='create user'></input>
                         </div>
                   </form>
             </div>

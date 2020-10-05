@@ -19,6 +19,7 @@ import Post from './components/createPDF/Post';
 import UserDashboard from './components/UserDashboard';
 import ContactForm from './components/EmailJS/ContactForm'
 import SearchComponent from './components/SearchComponent'
+import PetCreatePageFound from './components/NewPetFormFound'
 
 class App extends Component {
   constructor(props) {
@@ -80,6 +81,7 @@ class App extends Component {
               return <SignInPage {...routeProps} signIn={this.signIn}/>
             }
           }/>
+          <Route path='/pets/found_new' component={PetCreatePageFound} />
         <Route path='/users/new' component={NewUserPage} />
         <Route path='/map' component={ Home } />
         </Switch>

@@ -38,10 +38,12 @@ class NewLocationForm extends Component {
   }
 
   handleLocationSubmit(event){
-    const { currentTarget } = event;
+	const { currentTarget } = event;
+	event.preventDefault();
     const fd = new FormData(currentTarget);
-    this.props.onSubmit(this.props.pet.id, { long: fd.get('long'), lat: fd.get("lat") } );
-    currentTarget.reset();
+    this.props.onSubmit(this.props.pet.id, { long: this.state.markerPosition.lng, lat: this.state.markerPosition.lat } );
+	currentTarget.reset();
+	
   }
 
   componentDidMount() {
@@ -237,25 +239,10 @@ class NewLocationForm extends Component {
     let showmap;
 		if (this.state.center.lat !== undefined ) {
       showmap = <div>
-				<div>
-					<div className="form-group">
-						<label htmlFor="">City</label>
-						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.map.city }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">Area</label>
-						<input type="text" name="area" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.map.area }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">State</label>
-						<input type="text" name="state" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.map.state }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">Address</label>
-						<input type="text" name="address" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.map.address }/>
-					</div>
-				</div>
-
+						<div>
+							<input type='text' name='address' id='address' value={this.state.map.address} onChange={ this.onChange } autoComplete='off' required ></input>
+							<label for='address' className='label-name'> <span className='content-name'> Address </span> </label>
+						</div>
 				<AsyncMap
 					googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GoogleMapsAPI}&libraries=places&language=en`}
 					loadingElement={
@@ -274,51 +261,14 @@ class NewLocationForm extends Component {
     }
     
     return(
-      <form onSubmit={this.handleLocationSubmit}>
-       <div>
-         <label>Long</label>
-         <input type="text" name="long" id="long" value={this.state.markerPosition.lng} />
-         <label>Lat</label>
-         <input type="text" name="lat" id="lat" value={this.state.markerPosition.lat} />
-       </div>
-       <button className="ui button" type="submit">
-         Location!
-       </button>
-       {showmap} 
-     </form>
+      		<form onSubmit={this.handleLocationSubmit}>
+			  	<div className='petform-form-submit'>
+            		<input className='submit' type='submit' value="I've seen your pet here!" />
+         		</div>
+			{showmap} 
+			</form>
     )
   }
 }
 
 export default NewLocationForm;
-
-// function NewLocationForm(props) {
-//   function handleCommentSubmit(event) {
-//     const { currentTarget } = event;
-//     console.log('currentTarget', currentTarget)
-
-
-//     const fd = new FormData(currentTarget);
-
-//     props.onSubmit(props.pet.id, { long: fd.get('long'), lat: fd.get("lat") } );
-
-//     currentTarget.reset();
-//   }
-
-//   return (
-//     <form onSubmit={handleCommentSubmit}>
-//       <div>
-//         <label>Long</label>
-//         <input type="text" name="long" id="long" />
-//         <label>Lat</label>
-//         <input type="text" name="lat" id="lat" />
-//       </div>
-
-//       <button className="ui button" type="submit">
-//         Location!
-//       </button>
-//     </form>
-//   );
-// }
-
-// export default NewLocationForm;
