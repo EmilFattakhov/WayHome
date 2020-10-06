@@ -37,6 +37,7 @@
     "react-to-pdf": "0.0.13",
     "react-transition-group": "^4.4.1",
     "styled-components": "^5.1.1",
+    "sweetalert-react": "^0.4.11",
     "tensorflow-models": "0.0.1"
   },
   "scripts": {

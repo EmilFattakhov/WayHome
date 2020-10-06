@@ -163,7 +163,7 @@ const Dropdown = ({ callbackFromParent }) => {
           <div className='link'> {user ? (<img className='useravatar' src={user.avatar}></img>) : '' }</div>
           <div className='link'> {user ? (<div>  <h1 className='username'>{user.first_name} {user.last_name} </h1> </div>) : (<><Link to='/users/new'><button className='linkbutton'> Sign Up  </button></Link>  <Link to='/sign_in'><button className='linkbutton'> Sign In  </button></Link></>)} </div>
           <div className='link'> <div className='verticalline'></div> </div>
-          <div className='link'> <Link to='/pets/new'> <button className='petbutton'> I lost a Pet <i class="fas fa-plus-circle"></i> </button> </Link>  </div>
+          <div className='link'> <Link to='/pets/new'> <button className='petbutton'> Create new ad <i class="fas fa-plus-circle"></i> </button> </Link>  </div>
           {/* <a href="#" onClick={signOut}>Sign Out</a> */}
       </nav>
       </ React.Fragment>

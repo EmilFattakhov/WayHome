@@ -4,6 +4,7 @@ import axios from 'axios';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel'
 import PetCreatePage from './PetCreatePage'
+import './SearchComponent.css'
 
 const Search = ({ location }) => {
     const [searchParams, setSearchParams] = useState('');
@@ -25,15 +26,16 @@ const Search = ({ location }) => {
       axios.get('http://localhost:3000/api/v1/tags?tag=' + input).then((response) => { setPets(response.data)})
       console.log(pets)
       setInput('');
+      
     };
   
     return (
       <>
-      <div className='petform-container'>
-            <form onSubmit={submitAction} className='petform-form-container'>
+      <div className='petform-container-search'>
+            <form onSubmit={submitAction} className='petform-form-container-search'>
               <div className='petform-form'>
                     <input type='text' name='name' id='name' value={input} onChange={(e) => setInput(e.target.value)} autoComplete='off' required ></input>
-                    <label for='name' className='label-name'> <span className='content-name'> Start searching here </span> </label>
+                    <label for='name' className='label-name'> <span className='content-name'> Start searching here by typing animal type, breed or colour </span> </label>
               </div>
                 {/* <input
                   type='text'
@@ -75,7 +77,7 @@ const Search = ({ location }) => {
             </>)
                     })}
                  </div>
-                 <div className='center-div'><div className='link-to-new'> <Link to={`/pets/new`}> <h1 className='name'> Don't see a pet you are looking for? Create found pet listing </h1> </Link> </div></div>
+                 <div className='center-div'><div className='link-to-new'> <Link style={{ textDecoration: 'none', borderBottom: '1px solid red' }} to={`/pets/new`}> <h1 className='name'> Don't see a pet you are looking for? Create found pet listing </h1> </Link> </div></div>
       </>
     );
   };

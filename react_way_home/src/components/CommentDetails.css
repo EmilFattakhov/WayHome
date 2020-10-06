@@ -1,0 +1,16 @@
+.comment-details{
+    font-family: 'Grandstander';
+}
+
+.comment-details p {
+    color: #FF7851;
+    font-size: 20px;
+}
+
+.comment-details small{
+    color: #5fa8d3;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+

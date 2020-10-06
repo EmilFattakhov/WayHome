@@ -1,9 +1,9 @@
 import React from 'react'
-
+import './CommentDetails.css'
 function CommentsDetails(props) {
   const createdAt = new Date(props.created_at)
   return (
-    <div>
+    <div className='comment-details'>
       <p>
         {props.body}<br/>
       <small>by { props.author ? props.author : ''}</small>

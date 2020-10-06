@@ -19,7 +19,7 @@ function NewCommentForm(props) {
           <label for='body' className='label-name'> <span className='content-name'> Place your comment here </span> </label>
       </div>
       <div className='petform-form-submit'>
-          <input type='submit' value='Create comment'></input>
+          <input className='submit' type='submit' value='Create comment'></input>
       </div>
     </form>
   );

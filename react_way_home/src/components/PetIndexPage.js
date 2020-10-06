@@ -42,7 +42,6 @@ class PetIndexPage extends Component {
         <h1 className='lostpets'>Recently lost pets</h1>
         <div className='griddiv'>
           {this.state.pets.map((pet) => {
-            console.log(pet)
             return(
               <>
                 <div className='grid-element' key={pet.id}>
@@ -60,7 +59,9 @@ class PetIndexPage extends Component {
                         <img className='profile-pic' src={pet.image3}></img>
                       </div>
                     </Carousel>
-                    <div className='petname'><Link to={`/pets/${pet.id}`}> <h1 className='name'> {pet.name} </h1> </Link></div>
+                    <div className='div-center'>
+                      <div className='petname'><Link style={{ textDecoration: 'none'}} to={`/pets/${pet.id}`}> <h1 className='name'> {pet.name} </h1> </Link></div>
+                    </div>
                     {/* <button data-id={pet.id} onClick={this.deletePet}>Delete</button> */}
                  </div>
                  </>)

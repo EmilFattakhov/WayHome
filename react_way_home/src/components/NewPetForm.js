@@ -56,11 +56,11 @@ export default function NewPetForm( { handleSubmit, name, description, animal, a
             <label for='distinctive_features' className='label-name'> <span className='content-name'> Distinctive Features </span> </label>
          </div>
          <div className='petform-form'>
-                  <select id='flag' name = 'flag' onChange={handleUpdate}>
-                    <option value='' selected disabled hidden>What's the pet current status?</option>
-                    <option value='lost' >Lost</option>
-                    <option value='found' >Found</option>
-                    <option value='returned' >Returned Home</option>
+                  <select className='select' id='flag' name = 'flag' onChange={handleUpdate}>
+                    <option className='option-value' value='' selected disabled hidden>What's the pet current status?</option>
+                    <option className='option-value' value='lost' >Lost</option>
+                    <option className='option-value' value='found' >Found</option>
+                    <option className='option-value' value='returned' >Returned Home</option>
                   </select>
             <label for='flag' className='label-name'> <span className='content-name'> Choose a current status </span> </label>
          </div>
@@ -80,7 +80,7 @@ export default function NewPetForm( { handleSubmit, name, description, animal, a
             <input type='text' name='image3' id='image3' value={image3} onInput={handleUpdate} autoComplete='off'></input>
             <label for='image3' className='label-name'> <span className='content-name'> Image 3 </span> </label>
          </div>
-         <div></div>
+         <div> </div>
          <div className='petform-form-submit'>
             <input className='submit' type='submit' value='Create Pet'/>
          </div>

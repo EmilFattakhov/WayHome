@@ -11,6 +11,10 @@
     width:30%
 }
 
+.petform-form-container-search{
+    width:50%
+}
+
 .petform-form{
     font-size: 20px;
     width: 100%;
@@ -19,6 +23,7 @@
     overflow: hidden;
 }
 
+
 .petform-form input{
     width: 100%;
     height: 100%;
@@ -26,8 +31,7 @@
     padding-top: 15px;
     border:none;
     outline: none;
-    font-family: 'Grandstander';
-    
+    font-family: 'Grandstander'; 
 }
 
 .petform-form select{
@@ -100,4 +104,55 @@
 
 .petform-form select:focus + .label-name::after, .petform-form select:valid + .label-name::after{
     transform: translateX(0%);
+}
+
+
+.petform-form-submit{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.petform-container-search{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Grandstander';
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+.submit{
+    width: auto;
+    height: 6vh;
+    color: #5fa8d3;    
+    font-family: 'Grandstander';
+    font-size: 20px;
+    background-color: white;
+    border: 3px solid #5fa8d3 ;
+    border-radius: 6px;
+    text-shadow: 0 1px 0 #5fa8d3 ;
+    padding: 5px 5px 5px 5px;
+}
+
+.submit:hover{
+    transform: scale(1.1);
+    transition: all 0.3s linear;
+    background-color: #5fa8d3;
+    color: white;
+}
+.submit:active{
+    transform: translateY(5px);
+}
+
+.select{
+    background-color: white;
+    color: #5fa8d3;
+    font-family: 'Grandstander';
+    font-size: 15px;
+}
+
+.option-value{
+    background-color: teal;
 }
