@@ -4,25 +4,43 @@ import './PDF.css';
 
 const ref = React.createRef();
 
+ 
+
 const PDF = (props) => {
+  const image = props.image
+  
+  const imageStyle = {
+    backgroundImage: "url("+image+")",
+  }
   return (
-    <div>
-      <Pdf targetRef={ref} filename="post.pdf">
+    <>
+    <div className='center-button'>
+      <Pdf targetRef={ref} filename="Lost_Pet_Flyer.pdf">
         {({ toPdf }) => <button onClick={toPdf}>Capture as PDF</button>}
       </Pdf>
-      <div ref={ref}>
-        <div>
-          <h1>Name: {props.name}</h1>
-          <h3>Description: {props.description}</h3>
-          <h3>Animal: {props.animal}</h3>
-          <h3>Where Lost: {props.location_lost}</h3>
-          <h3>Distinctive features: {props.distinctive_features}</h3>
-          <h3>Time lost: {props.time_lost}</h3>
-          <img src={props.image} alt={props.name} height='300' width='300' />
+      </div>
+      <div>
+      <div>
+        <div className='pet-pdf-container'>
+          <div className='pet-pdf' ref={ref}>
+            <h1 className='pdf-description'>Lost pet! Please contact me if you have seen {props.name}</h1>
+            <h1 className='pdf-name'><span>Name: </span>{props.name}</h1>
+            <img src={props.image} alt={props.name} style={ {width:"100%", height:"auto"} } />
+            <h3 className='pdf-prop'><span>Description:</span> {props.description}</h3>
+            <h3 className='pdf-prop'><span>Animal:</span> {props.animal}</h3>
+            <h3 className='pdf-prop'><span>Colour:</span> {props.colour}</h3>
+            <h3 className='pdf-prop'><span>Where Lost:</span> {props.location_lost}</h3>
+            <h3 className='pdf-prop'><span>Distinctive features:</span> {props.distinctive_features}</h3>
+            <h3 className='pdf-prop'><span>Time lost:</span> {props.time_lost}</h3>
+            <h3 className='pdf-prop'><span>Time lost:</span> {props.contact_number}</h3>
+            
+            {/* <div className='image' style={ imageStyle }></div> */}
+          </div>
         </div>
       </div>
       
     </div>
+    </>
   );
 }
 

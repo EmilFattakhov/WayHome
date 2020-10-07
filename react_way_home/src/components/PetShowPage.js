@@ -9,11 +9,12 @@ import NewLocationForm from './NewLocationForm';
 import NewPetForm from './NewPetForm'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel'
-import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
+import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker, HeatMap } from "react-google-maps";
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
 import { GoogleMapsAPI } from './mapsFeatures/client/client-config';
 import ContactForm from './EmailJS/ContactForm'
+
 
 
 Geocode.setApiKey( GoogleMapsAPI );
@@ -223,6 +224,17 @@ class PetShowPage extends Component {
               
               return(<Marker position={{ lat: parseFloat(location.lat), lng: parseFloat(location.long) }} > </Marker>)
             })) : '' };
+         
+         
+          {/* { this.state.pet.locations? (this.state.pet.locations.map( (location, i) => {
+              
+          return(<HeatMap
+            opacity={3} 
+            positions={{ lat: parseFloat(location.lat), lng: parseFloat(location.long) }}
+            radius={30}
+            />)
+          })) : '' }; */}
+          
 					</ GoogleMap >
         )
 			)
@@ -296,6 +308,8 @@ class PetShowPage extends Component {
               
               <div className='petshow-map-left'> { this.state.showContactForm? (<ContactForm pet={this.state.pet} onSubmit={this.sendLetter}> </ContactForm>) :'' } </div>
           </div>
+
+          
         </div>
         {/* <div><NewPetForm
           handleSubmit={this.updatePet}

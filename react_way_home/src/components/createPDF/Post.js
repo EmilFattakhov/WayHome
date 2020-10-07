@@ -7,10 +7,12 @@ class Post extends Component {
         name: '',
         description: '',
         animal: '',
+        colour: '',
         location_lost: '',
         time_lost: '',
         distinctive_features: '',
         image: '',
+        contact_number:'',
         postSubmitted: false
     }
 
@@ -59,6 +61,10 @@ class Post extends Component {
                                     <label for='location_lost' className='label-name'> <span className='content-name'> Location Lost </span> </label>
                                 </div>
                                 <div className='petform-form'>
+                                    <input onChange={this.onChange('colour')} name="colour" type="text" autoComplete='off' required ></input>
+                                    <label for='colour' className='label-name'> <span className='content-name'> Colour </span> </label>
+                                </div>
+                                <div className='petform-form'>
                                     <input onChange={this.onChange('distinctive_features')} name="distinctive_features" type="text" autoComplete='off' required ></input>
                                     <label for='distinctive_features' className='label-name'> <span className='content-name'> Distinctive Features </span> </label>
                                 </div>
@@ -70,13 +76,17 @@ class Post extends Component {
                                     <input onChange={this.onChange('image')} name="image" type="text" autoComplete='off' required ></input>
                                     <label for='image' className='label-name'> <span className='content-name'> Image </span> </label>
                                 </div>
-                                <div className='petform-form-submitm'>
+                                <div className='petform-form'>
+                                    <input onChange={this.onChange('contact_number')} name="contact_number" type="text" autoComplete='off' required ></input>
+                                    <label for='contact_number' className='label-name'> <span className='content-name'> Contact Number </span> </label>
+                                </div>
+                                <div className='petform-form-submit'>
                                     <button type="button" onClick={this.submitPost}>Submit</button>
                                 </div>
                             </form>
                         </div>
                     ) : (
-                        <PDF name={this.state.name} description={this.state.description} image={this.state.image} animal={this.state.animal} age={this.state.age} sex={this.state.sex} breed={this.state.breed} colour={this.state.colour} location_lost={this.state.location_lost} distinctive_features={this.state.distinctive_features} />
+                        <PDF name={this.state.name} description={this.state.description} image={this.state.image} animal={this.state.animal} colour={this.state.colour} location_lost={this.state.location_lost} time_lost={this.state.time_lost} distinctive_features={this.state.distinctive_features} contact_number={this.state.contact_number} />
                     )
                 }
             </>
