@@ -272,10 +272,14 @@ class PetShowPage extends Component {
         </div>
         <div className='petshow-container'>
             <div className='petshow-map-and-buttons-left'>
-              <div className='petshow-map-left'>
+            { this.state.showLocationForm? 
+            (<> <div className='petshow-map-left'>  <h1>Point to the location you've seen {this.state.pet.name} on the map</h1> <NewLocationForm pet={this.state.pet} onSubmit={this.createLocation}></NewLocationForm> </div> </>)
+             :
+              (<div className='petshow-map-left'>
                 <h1>{this.state.pet.name} was spotted here: </h1>
                 {showmap} 
-              </div>
+              </div>) 
+            }
             </div>
             <div className='petshow-map-and-buttons-right'> 
               <button className='petshow-button' onClick={this.buttonMapClick}>I've seen {this.state.pet.name}</button>
@@ -288,7 +292,7 @@ class PetShowPage extends Component {
         <div className='petshow-container'>
           <div className='petshow-container-location'>
               
-              { this.state.showLocationForm? (<> <div className='petshow-map-left'>  <h1>Point to the location you've seen {this.state.pet.name} on the map</h1> <NewLocationForm pet={this.state.pet} onSubmit={this.createLocation}></NewLocationForm> </div> </>) :'' } 
+              {/* { this.state.showLocationForm? (<> <div className='petshow-map-left'>  <h1>Point to the location you've seen {this.state.pet.name} on the map</h1> <NewLocationForm pet={this.state.pet} onSubmit={this.createLocation}></NewLocationForm> </div> </>) :'' }  */}
               
               <div className='petshow-map-left'> { this.state.showContactForm? (<ContactForm pet={this.state.pet} onSubmit={this.sendLetter}> </ContactForm>) :'' } </div>
           </div>

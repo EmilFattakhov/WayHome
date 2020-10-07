@@ -84,6 +84,8 @@
     bottom: 5px;
     left: 0px;
     transition: transform 0.3s ease;
+    font-family: 'Grandstander';
+    font-size: 20px;
 }
 
 .petform-form input:focus + .label-name .content-name, .petform-form input:valid + .label-name .content-name{

@@ -1,8 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import emailjs from 'emailjs-com';
 import { Pet } from '../../requests';
+import SweetAlert from 'react-bootstrap-sweetalert';
+import 'sweetalert/dist/sweetalert.css';
+
 
 export default function ContactForm( {pet, onSubmit}) {
+    const [alert, setAlert] = useState(false);
+
+    function showAlert() {
+        setAlert(true);
+        return (<SweetAlert show={alert} title='Demo' text='Alert in React' onConfirm={() => closeAlert()}/>)
+    };
+
+    function closeAlert() {
+        setAlert(false);
+    };
+
     function sendEmail(e) {
         e.preventDefault();
 
@@ -14,9 +28,9 @@ export default function ContactForm( {pet, onSubmit}) {
             }).then( () => {
                 onSubmit();
             }).then(() =>{
-                alert('Email has been sent')
+                showAlert();
+                // alert('email has been sent');
             })
-            
     }
 
     return(

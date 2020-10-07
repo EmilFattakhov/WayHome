@@ -81,7 +81,7 @@ class App extends Component {
               return <SignInPage {...routeProps} signIn={this.signIn}/>
             }
           }/>
-          <Route path='/pets/found_new' component={PetCreatePageFound} />
+          {/* <Route path='/pets/found_new' component={PetCreatePageFound} /> */}
         <Route path='/users/new' component={NewUserPage} />
         <Route path='/map' component={ Home } />
         </Switch>
