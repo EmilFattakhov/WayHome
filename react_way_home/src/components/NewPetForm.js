@@ -14,7 +14,7 @@ export default function NewPetForm( { handleSubmit, name, description, animal, a
     <>
 
      <div className='petform-container'>
-       <h3>The more details you provide the greater the chance that your pet will find way back home</h3>
+       <h3 className='petform-h3-header'>The more details you provide the greater the chance that your pet will find way back home</h3>
        <form className='petform-form-container' onSubmit={(event) => { 
           event.preventDefault();
           handleSubmit();

@@ -38,11 +38,11 @@ export default function ContactForm( {pet, onSubmit}) {
             <div>
                 <form className='contact-form-container' onSubmit={sendEmail}>
                     <div> <h1>Send email to the pet owner</h1> </div>
-                    <div className='contact-form'> <input type='text' placeholder='Your Name' name='name'/> </div>
+                    <div className='contact-form'> <input type='text' placeholder='Your Name' name='name' autoComplete='off'/> </div>
                     <div className='email-hidden'> <input type='email' name='email' value={pet.author.email}></input></div>
                     <div className='email-hidden'> <input type='text' name='authorname' value={pet.author.full_name}></input></div>
-                    <div className='contact-form'> <input type='email' placeholder='Your email address' name='useremail'/>  </div>
-                    <div className='contact-form'> <input type='text' placeholder='Your message' name='message'/> </div>
+                    <div className='contact-form'> <input type='email' placeholder='Your email address' name='useremail' autoComplete='off'/>  </div>
+                    <div className='contact-form'> <input type='text' placeholder='Your message' name='message' autoComplete='off'/> </div>
                     <div className='contact-form'> <input type='submit' value='Send Message'/> </div>
                 </form>
             </div>

@@ -133,9 +133,6 @@ class PetCreatePage extends Component {
   };
   
   shouldComponentUpdate( nextProps, nextState ){
-    console.log('all state', this.state)
-    console.log('pet params', this.state.newPetParams)
-    console.log(this.state.map)
 		if (
 			this.state.markerPosition.lat !== this.state.center.lat ||
 			this.state.map.address !== nextState.address ||
@@ -186,7 +183,6 @@ class PetCreatePage extends Component {
   };
   
   onChange = ( event ) => {
-    console.log(event)
 		this.setState({ map: { [event.target.name]: event.target.value }});
   };
   
@@ -205,25 +201,6 @@ class PetCreatePage extends Component {
 				      city = this.getCity( addressArray ),
 				      area = this.getArea( addressArray ),
 				      state = this.getState( addressArray );
-				// this.setState( 
-        //   { map: {
-				// 	address: ( address ) ? address : '',
-				// 	area: ( area ) ? area : '',
-				// 	city: ( city ) ? city : '',
-        //   state: ( state ) ? state : '',
-        //   },
-				// 	markerPosition: {
-				// 		lat: newLat,
-				// 		lng: newLng
-				// 	},
-				// 	mapPosition: {
-				// 		lat: newLat,
-				// 		lng: newLng
-        //   },
-        //   // newPetParams: {
-        //   //   location_lost: city,
-        //   //   },
-        //   })
           this.setState(prevState => ({
             map:{
               address: (address) ? address : '',
@@ -262,7 +239,7 @@ class PetCreatePage extends Component {
 		      state = this.getState( addressArray ),
 		      latValue = place.geometry.location.lat(),
 		      lngValue = place.geometry.location.lng();
-		// Set these values in the state.
+		
 		this.setState({ map: {
 			address: ( address ) ? address : '',
 			area: ( area ) ? area : '',
@@ -277,9 +254,6 @@ class PetCreatePage extends Component {
 				lat: latValue,
 				lng: lngValue
       },
-      // newPetParams: {
-      //   location_lost: address,
-      // },
 		})
 	};
 
@@ -367,7 +341,6 @@ class PetCreatePage extends Component {
           breed={this.state.newPetParams.breed}
           colour={this.state.newPetParams.colour}
           location_lost={this.state.map.address}
-          // location_lost={this.state.newPetParams.location_lost}
           distinctive_features={this.state.newPetParams.distinctive_features}
           flag={this.state.newPetParams.flag}
           time_lost={this.state.newPetParams.time_lost}

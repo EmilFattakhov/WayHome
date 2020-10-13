@@ -44,6 +44,7 @@ class PetIndexPage extends Component {
           {this.state.pets.map((pet) => {
             return(
               <>
+
                 <div className='grid-element' key={pet.id}>
                 { pet.flag == 'found' ? <div className='found'></div> : ""}
                 { pet.flag == 'lost' ? <div className='lost'></div> : ""}

@@ -5,8 +5,8 @@
 }
 .center-button button{
     background-color: white;
-    width: 100px;
-    height: 40px;
+    width: 200px;
+    height: 70px;
     border: 3px solid #5fa8d3;
     border-radius: 15px;
 }
@@ -26,9 +26,23 @@
     font-family: 'Grandstander';
 }
 
+.pet-pdf{
+    padding-left: 1%;
+    padding-right: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pdf-description{
+    font-size: 30px;
+    color: #5fa8d3 ;
+}
 .pdf-name{
-    font-size: 20px;
+    font-size: 30px;
     color: #5fa8d3;
+
 }
 
 .pdf-prop{
@@ -41,6 +55,17 @@
     font-weight: 700;
     font-size: large
     ;
+}
+
+.pdf-name span{
+    color: #FF7851;
+    font-weight: 700;
+    font-size: 30px
+}
+.pdf-description span{
+    color: #FF7851;
+    font-weight: 700;
+    font-size: 30px;
 }
 
 .image{

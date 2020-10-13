@@ -16,7 +16,7 @@ class Api::V1::PetsController < Api::ApplicationController
     # pets = Pet.where(params[:query])
     tag = params[:tag]
     # pets = Pet.where( (animal: tag ) or (breed: tag))
-    pets = Pet.where("animal ilike ? OR breed ilike ?", tag, tag)
+    pets = Pet.where("animal ilike ? OR breed ilike ? OR colour ilike ?", tag, tag, tag)
     render(json: pets)
   end
 

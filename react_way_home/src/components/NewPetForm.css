@@ -7,6 +7,12 @@
     font-size: x-large;
 }
 
+.petform-h3-header{
+    font-family: 'Grandstander';
+    font-size: 30px;
+    color: #5fa8d3;
+}
+
 .petform-form-container{
     width:30%
 }
