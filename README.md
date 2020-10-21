@@ -2,7 +2,7 @@
 
 #### WayHome is a Full Stack Web Application which helps owners find their lost pets. It's a user friendly application with ability to create a lost or found pet advertisement, track lost pet movement, easily connect to a person who has seen or found your pet. Application is built using ReactJS at the frontend and Ruby on Rails, Google Maps API and EmailJS and PostgreSQL DB at the backend. All the styles are custom-made CSS.
 
-# I made a video about the application, you can watch it on Vimeo instead of looking at screenshots and code https://vimeo.com/470348098 
+## I made a video about the application, you can watch it on Vimeo instead of looking at screenshots and code https://vimeo.com/470348098 
 
 ###### Let's take a look at the main page. First of all, we can sign in or sign up by clicking buttons accordingly at the navigation bar
 ![MainPage](https://i.ibb.co/DGPsWd3/1.png)
